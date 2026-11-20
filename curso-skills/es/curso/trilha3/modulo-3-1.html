@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 3.1 - Composición de skills | Curso de Skills</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Bordas dark suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (trilha purple) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .bg-purple-900\/30 { background-color: rgba(124, 58, 237, 0.10); }
+    html:not(.dark) .bg-purple-900\/40 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124, 58, 237, 0.18); }
+    html:not(.dark) .bg-purple-600 { background-color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500:hover { background-color: #8b5cf6; }
+
+    /* Light mode - hover trilhas inativas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+
+    /* Light mode - red (boxes de erro) */
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+
+    /* Light mode - emerald (✓) e blue (dados) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+
+    /* Light mode - gradientes off */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+
+    /* Light mode - cores especiais */
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+
+    /* Light mode - nav */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    /* Code box */
+    .code-box {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+    html:not(.dark) .code-box-dark { background-color: #0f172a !important; color: #e2e8f0 !important; }
+    html:not(.dark) .code-box-dark .text-purple-400 { color: #c084fc; }
+    html:not(.dark) .code-box-dark .text-neutral-300,
+    html:not(.dark) .code-box-dark .text-neutral-400 { color: #cbd5e1; }
+  </style>
+<link href="https://inematds.github.io/mp-skill/curso-skills/curso/trilha3/modulo-3-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/en/curso/trilha3/modulo-3-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/es/curso/trilha3/modulo-3-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha3/modulo-3-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../en/curso/trilha3/modulo-3-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-3-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🧠</span>
+<span class="font-bold text-lg hidden sm:inline">Curso de Skills</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html">
+<span class="sm:hidden">T1</span>
+<span class="hidden sm:inline">Fundamentos</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html">
+<span class="sm:hidden">T2</span>
+<span class="hidden sm:inline">Práctica</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10" href="index.html">
+<span class="sm:hidden">T3</span>
+<span class="hidden sm:inline">Composición</span>
+</a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20">
+<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+</svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-purple-400" href="../../index.html">Inicio</a>
+<span>/</span>
+<a class="hover:text-purple-400" href="index.html">Ruta 3</a>
+<span>/</span>
+<span class="text-purple-400">Módulo 3.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">
+        MÓDULO 3.1
+      </span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🔗 Composición de skills</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">
+        Las Skills se convierten en pipelines cuando las encadenas. Aprende patrones de composición, estado compartido mediante CONTEXT.md y cuándo tiene sentido una macro skill.
+      </p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-purple-400">9</div>
+<div class="text-xs text-neutral-400">Secciones</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-purple-400">45</div>
+<div class="text-xs text-neutral-400">Minutos</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-purple-400">Inter.</div>
+<div class="text-xs text-neutral-400">Nivel</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-purple-400">Práctica</div>
+<div class="text-xs text-neutral-400">Tipo</div>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN -->
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🎯 Por qué componer</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Una skill resuelve <strong class="text-purple-400">un problema</strong>. Una composición resuelve un <strong class="text-purple-400">workflow completo</strong>. La diferencia no es el tamaño, sino la intención. Cuando llamas a 3 skills «porque se te ocurrió», eso es <em>uso aislado</em>. Cuando diseñas A → B → C antes de empezar y cada resultado alimenta el siguiente, eso es composición.
+      </p>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Consejo fundamental
+        </h3>
+<p class="text-neutral-300">
+<strong>Skill individual</strong> resuelve 1 problema (generar un PRD, hacer grilling, escribir una prueba). <strong>Composición</strong> resuelve un workflow (descubrir → alinear → dividir → implementar → revisar). Si estás repitiendo la misma secuencia de 3+ skills en distintos proyectos, ya tienes un pipeline; solo falta ponerle nombre.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Encadenar de forma consciente</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Diseña el pipeline antes: <strong>"grill → PRD → issues → TDD"</strong></span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada skill recibe la salida de la anterior como input explícito</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Revisar la salida intermedia antes de avanzar</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>CONTEXT.md acumula términos y decisiones entre etapas</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Saber cuándo parar y retroceder una etapa si es necesario</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Llamar skills por separado</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Ejecuta el /tdd ahí" sin tener PRD ni issues</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Omitir el grilling: implementa rápido y descubre el problema después</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cada turno empieza desde cero, sin aprovechar el contexto anterior</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>La salida de una skill nunca indica la entrada de la siguiente</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Rehace la misma secuencia cada vez sin nombrar el pipeline</span></li>
+</ul>
+</div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🧩 Patrones de composición</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Hay cuatro patrones que cubren el 90% de los pipelines reales. Cada uno tiene una forma y un caso de uso claros. Memorizar los cuatro te da un vocabulario para diseñar workflows.
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3">Secuencial (A → B → C)</h3>
+<p class="text-sm text-neutral-400 mb-3">Cada etapa depende de la anterior. Patrón por defecto.</p>
+<pre class="code-box code-box-dark bg-dark-900 rounded p-3 text-xs text-neutral-300">  A ──▶ B ──▶ C ──▶ D
+ grill   PRD  issues  TDD</pre>
+<p class="text-xs text-neutral-500 mt-3">Uso: workflow lineal (descubrir, planificar, ejecutar).</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3">Fan-out (A → B + C + D)</h3>
+<p class="text-sm text-neutral-400 mb-3">Una skill activa varias en paralelo.</p>
+<pre class="code-box code-box-dark bg-dark-900 rounded p-3 text-xs text-neutral-300">         ┌─▶ B (testes)
+  A ─────┼─▶ C (docs)
+ plan    └─▶ D (impl)</pre>
+<p class="text-xs text-neutral-500 mt-3">Uso: paralelizar trabajo independiente.</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3">Fan-in (B + C → D)</h3>
+<p class="text-sm text-neutral-400 mb-3">Varias salidas convergen en una skill final.</p>
+<pre class="code-box code-box-dark bg-dark-900 rounded p-3 text-xs text-neutral-300">  B (pesquisa) ─┐
+                 ├─▶ D (sintese)
+  C (entrev.)  ─┘</pre>
+<p class="text-xs text-neutral-500 mt-3">Uso: consolidar entradas (revisión, síntesis).</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3">Bucle (A → B → A)</h3>
+<p class="text-sm text-neutral-400 mb-3">Iteración hasta cumplir el criterio de detención.</p>
+<pre class="code-box code-box-dark bg-dark-900 rounded p-3 text-xs text-neutral-300">  A ──▶ B ──┐
+  ▲         │
+  └─────────┘
+ (revisa ate aprovar)</pre>
+<p class="text-xs text-neutral-500 mt-3">Uso: refinamiento iterativo (PRD con grilling, revisión de código).</p>
+</div>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">🧠</span> Combinaciones
+        </h3>
+<p class="text-neutral-300 text-sm">
+          Los pipelines reales combinan patrones. Por ejemplo: <strong>secuencial</strong> en el esqueleto (grill → PRD → issues), con <strong>loop</strong> dentro del grill (Codex hace el grill, Claude revisa, hasta LGTM), y <strong>fan-out</strong> en la implementación (cada issue se convierte en una branch paralela).
+        </p>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">📜 Ejemplo canónico: grill → PRD → issues → tdd</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        El pipeline más usado en features de complejidad media. Cinco skills encadenadas, cada una con una tarea específica y cada salida alimentando la siguiente. Memoriza esta secuencia.
+      </p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">1</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/grill-with-docs <span class="text-xs text-neutral-500 ml-2">aligns</span></h4>
+<p class="text-sm text-neutral-400 mb-3">Pon a prueba la idea frente al lenguaje del proyecto. Resultado: términos canónicos, premisas explícitas, conflictos con decisiones anteriores.</p>
+<p class="text-neutral-300 text-sm">"El término <em>'cascade'</em> ya existe en CONTEXT.md como <em>'materialization cascade'</em>. Usa este término en el PRD para mantener un lenguaje ubicuo."</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">2</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/to-prd <span class="text-xs text-neutral-500 ml-2">synthesizes</span></h4>
+<p class="text-sm text-neutral-400 mb-3">Transforma el resultado del grill en un PRD estructurado (problema, solución, alcance, fuera de alcance, éxito).</p>
+<p class="text-neutral-300 text-sm">Lee los términos del CONTEXT.md y úsalos literalmente. El PRD se convierte en un documento duradero, no en un borrador.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">3</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/to-issues <span class="text-xs text-neutral-500 ml-2">slices</span></h4>
+<p class="text-sm text-neutral-400 mb-3">Divide el PRD en issues accionables (de 1 a 3 días cada una). Resultado: lista de issues con criterios de aceptación.</p>
+<p class="text-neutral-300 text-sm">"Issue #1: crear tabla <em>materialization_cascade</em>. Issue #2: implementar el trigger de invalidación..."</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">4</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/triage <span class="text-xs text-neutral-500 ml-2">prioritizes</span></h4>
+<p class="text-sm text-neutral-400 mb-3">Ordena los issues por dependencia + riesgo + valor. Decide qué entra en el primer sprint.</p>
+<p class="text-neutral-300 text-sm">"Issue #1 (tabla) bloquea #2 y #3. Empieza por #1 y deja #4 (UI) para el final."</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">5</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/tdd <span class="text-xs text-neutral-500 ml-2">implementa</span></h4>
+<p class="text-sm text-neutral-400 mb-3">Toma una issue priorizada e impleméntala con test-first. Resultado: código + pruebas + PR.</p>
+<p class="text-neutral-300 text-sm">"Issue #1: escribe una prueba que falle para el schema, crea la migración, haz que la prueba pase y crea un commit."</p>
+</div>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3">Prompts reales que conectan cada etapa</h3>
+<pre class="code-box code-box-dark bg-dark-900 rounded p-4 text-neutral-300"># Turno 1
+/grill-with-docs Quero adicionar cache materializado por usuario.
+
+# Turno 2 (apos grill atualizar CONTEXT.md)
+/to-prd Use os termos definidos no CONTEXT.md (materialization cascade,
+cache invalidation trigger). Gere PRD em docs/prd/cache.md.
+
+# Turno 3
+/to-issues Le docs/prd/cache.md. Cria issues no GitHub com label "cache".
+
+# Turno 4
+/triage Le issues com label "cache". Prioriza por dependencia.
+
+# Turno 5
+/tdd Pega issue #1 (mais alta prioridade). Test-first.</pre>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🧠 Estado compartido mediante CONTEXT.md</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        El secreto de una buena composición no es tener skills perfectas, sino tener <strong class="text-purple-400">memoria entre ellos</strong>. CONTEXT.md funciona como caché duradera: la skill A escribe un término, la skill B lo lee y lo usa. Sin eso, cada skill empieza desde cero y vuelves a aprender el lenguaje cada vez.
+      </p>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center">
+<span class="mr-2">📝</span> Cómo CONTEXT.md se convierte en un puente
+        </h3>
+<p class="text-neutral-300 mb-4">
+          CONTEXT.md tiene secciones vivas: <strong>Glossary</strong> (términos canónicos), <strong>Decisions</strong> (ADR ligeros), <strong>Open questions</strong> (lo que aún no se decidió). Cada skill que cambia algo duradero escribe aquí. Cada skill que comienza lee primero.
+        </p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Glossary:</strong> nombres oficiales (entidades, conceptos, eventos)</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Decisions:</strong> "decidimos X porque Y, alternativas rechazadas: Z"</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span><strong>Open questions:</strong> ambigüedades que deben resolverse</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3">Turno A: /grill escribe en CONTEXT.md</h3>
+<pre class="code-box code-box-dark bg-dark-900 rounded p-4 text-neutral-300">## Glossary
+
+- <span class="text-purple-400">materialization cascade</span>: sequencia de invalidacoes
+  disparadas quando uma fonte upstream muda. Substitui o termo
+  informal "atualizacao em cadeia".
+
+## Decisions
+
+- ADR-007: cache materializado por usuario, nao global.
+  Motivo: isolamento de tenant. Alternativa rejeitada:
+  cache global com chave composta (complexidade &gt; beneficio).</pre>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3">Turno B: /to-prd lee y usa los términos</h3>
+<pre class="code-box code-box-dark bg-dark-900 rounded p-4 text-neutral-300"># PRD: Cache materializado
+
+## Problema
+Consultas pesadas rodam toda vez. Precisamos de
+<span class="text-purple-400">materialization cascade</span> por usuario.
+
+## Solucao
+Conforme ADR-007 (ver CONTEXT.md), implementar cache
+materializado <em>por usuario</em>. Nao global.
+
+## Termos
+<span class="text-purple-400">materialization cascade</span>: ver Glossary do CONTEXT.md.</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">⚡</span> Truco
+        </h3>
+<p class="text-neutral-300">
+          Antes de llamar a la siguiente skill en el pipeline, haz un turno explícito: <em>"actualiza el CONTEXT.md con lo que descubrimos"</em>. Sin esto, la memoria queda en la conversación (efímera) y la siguiente skill lo pierde todo.
+        </p>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🏗️ Cuándo crear una skill macro</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Macro skill = una skill que <strong class="text-purple-400">llama a otras skills</strong> en secuencia. Útil cuando el pipeline es recurrente. Inútil (y peligroso) cuando intentas "automatizar el pensamiento".
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Macro útil</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Workflow recurrente (3+ proyectos usan la misma secuencia)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Todo el equipo la usa, no solo tú</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Las etapas tienen entradas y salidas bien definidas</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Hay un checkpoint humano entre las fases (revisión)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Más fácil de explicar que volver a explicar 5 skills</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Macro inútil</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Llamadas aisladas que cambian cada vez</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Lógica condicional compleja ("si X, haz Y; de lo contrario, Z")</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Macro hecha para «ahorrar 1 prompt» — genera más bugs que ahorro</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Omite la revisión humana entre etapas críticas</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Solo 1 persona entiende lo que hace</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">📦</span> Plantilla de skill macro
+        </h3>
+<pre class="code-box bg-dark-900 rounded p-4 text-neutral-300 text-sm">---
+name: /feature-pipeline
+description: Pipeline padrao de feature media. Grill -&gt; PRD -&gt; issues -&gt; TDD.
+---
+
+# Skill: feature-pipeline
+
+## Quando usar
+Feature nova de complexidade media (2-5 issues).
+
+## Passos
+1. /grill-with-docs &lt;descricao da feature&gt;
+   - PARE aqui. Revise o CONTEXT.md atualizado.
+2. /to-prd Use termos do CONTEXT.md.
+   - PARE. Aprove o PRD antes de fatiar.
+3. /to-issues Le o PRD. Cria issues com label.
+4. /triage Prioriza.
+5. /tdd Pega a primeira issue.
+
+## Checkpoints humanos
+Entre passos 1-2 e 2-3 SEMPRE. Nao pula.</pre>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🔧 Ejemplo práctico: refactorización completa</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Escenario real: código heredado con 3 sistemas de caché duplicados. Vamos a refactorizar usando <strong class="text-purple-400">5 skills encadenadas</strong>. Fíjate en el punto de control humano entre cada una.
+      </p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">1</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/zoom-out — mapea el área</h4>
+<p class="text-sm text-neutral-400 mb-3">Diagrama de quién llama a quién, dónde viven los 3 cachés, dependencias.</p>
+<p class="text-neutral-300 text-sm">Salida: "Cache A en <code class="text-purple-400">src/api/</code>, Cache B en <code class="text-purple-400">src/jobs/</code>, Cache C en <code class="text-purple-400">src/web/</code>. Se superponen en 7 funciones."</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">2</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/improve-codebase-architecture — encuentra oportunidades</h4>
+<p class="text-sm text-neutral-400 mb-3">Lee el mapa del zoom-out. Propón unificación.</p>
+<p class="text-neutral-300 text-sm">Salida: "Unificar en <code class="text-purple-400">src/cache/</code>. Las cachés A y B usan la misma semántica (TTL). La caché C necesita invalidación manual: mantenla como subtipo."</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">3</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/grill-with-docs — alinea el enfoque</h4>
+<p class="text-sm text-neutral-400 mb-3">Pon a prueba la propuesta frente a CONTEXT.md.</p>
+<p class="text-neutral-300 text-sm">Salida: "El término correcto es <em>'cache backend'</em> (ADR-003), no 'cache provider'. Actualiza Glossary."</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">4</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/to-issues — genera issues</h4>
+<p class="text-sm text-neutral-400 mb-3">Divide el refactor en 4 issues secuenciales.</p>
+<p class="text-neutral-300 text-sm">Salida: "#1 crear interfaz CacheBackend; #2 migrar Cache A; #3 migrar Cache B; #4 adaptar Cache C como subtipo."</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">5</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">/tdd — implementa</h4>
+<p class="text-sm text-neutral-400 mb-3">Toma la issue #1. Primero, las pruebas.</p>
+<p class="text-neutral-300 text-sm">Salida: PR con interfaz + pruebas verdes. Listo para el issue #2.</p>
+</div>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3">Salida resumida de cada turno</h3>
+<pre class="code-box code-box-dark bg-dark-900 rounded p-4 text-neutral-300">[1] /zoom-out         -&gt; mapa.md          (3 caches, 7 sobreposicoes)
+[2] /improve-arch     -&gt; propostas.md     (unificar em src/cache/)
+[3] /grill-with-docs  -&gt; CONTEXT.md++     (Glossary: cache backend)
+[4] /to-issues        -&gt; 4 issues no GH   (labels: refactor/cache)
+[5] /tdd              -&gt; PR #142          (interface + testes)</pre>
+</div>
+</section>
+<!-- SECAO 7 -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">⚠️ Antipatrones de composición</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Los dos errores más comunes son opuestos: saltarse las skills para «ir más rápido» y no revisar los resultados intermedios. Ambos generan retrabajo exponencial.
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Composición saludable</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada etapa tiene una salida en un archivo (PRD.md, issues.json, CONTEXT.md)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Revisa la salida antes de llamar a la siguiente skill</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cuando algo está mal, vuelve un paso atrás; no intentes corregirlo en el siguiente</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada skill asume que la anterior hizo su trabajo correctamente</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Composición rota</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Omitir el grill «para ahorrar tiempo» → PRD con términos incorrectos → issues sin sentido → retrabajo 3 veces mayor</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>No leer los resultados intermedios → el error se propaga y se acumula en las etapas siguientes</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Corrige en /tdd" lo que debería estar en el PRD → el alcance crece en silencio</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Llamadas en secuencia sin CONTEXT.md → cada skill vuelve a aprender el vocabulario</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center">
+<span class="mr-2">🚨</span> Atención
+        </h3>
+<p class="text-neutral-300">
+          El costo de saltarse un paso no aparece de inmediato: aparece 2 o 3 skills después, cuando descubres que la salida del <code class="text-red-400">/tdd</code> no coincide con lo que pedía el PRD. Ese «ahorro» de 5 minutos se convierte en 2 horas de volver a ejecutar el pipeline.
+        </p>
+</div>
+</section>
+<!-- SECAO 8 -->
+<section class="mb-16" id="topico-8">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">8</span>
+<h2 class="text-2xl font-bold">🌐 Composición entre proyectos</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        La composición no tiene que quedarse dentro de un proyecto. Cuando dos proyectos comparten un dominio (ej.: marketplace + admin), usar <strong class="text-purple-400">grill+CONTEXT.md de uno para informar el PRD del otro</strong> mantiene el lenguaje ubicuo entre repos.
+      </p>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center">
+<span class="mr-2">🔗</span> Flujo entre proyectos
+        </h3>
+<ol class="space-y-3 text-neutral-300 text-sm list-decimal list-inside">
+<li>El Proyecto A (marketplace) usa <code class="text-purple-400">/grill-with-docs</code> y consolida términos en el CONTEXT.md.</li>
+<li>Copia (o crea un symlink de) la sección <strong>Glossary</strong> para el proyecto B (admin).</li>
+<li>El Proyecto B usa <code class="text-purple-400">/to-prd</code> que hacen referencia al mismo Glossary.</li>
+<li>Ambos PRDs dicen <em>"product listing"</em> (no "producto" en uno y "anuncio" en el otro).</li>
+<li>Cuando una entidad cambia en A, actualiza Glossary; B vuelve a importarla.</li>
+</ol>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Consejo avanzado
+        </h3>
+<p class="text-neutral-300">
+          Para equipos con varios repos, mantener un <strong>SHARED_CONTEXT.md</strong> en un repo separado (como "docs/") que todos los proyectos importan funciona mejor que copiar y pegar manualmente. Las Skills leen este archivo central y evitan la divergencia de vocabulario.
+        </p>
+</div>
+</section>
+<!-- SECAO 9 -->
+<section class="mb-16" id="topico-9">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">9</span>
+<h2 class="text-2xl font-bold">🏋️ Ejercicio práctico</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Elige 1 feature pendiente de tu backlog. Combina 3 skills para entregarla. Documenta cada turno: prompt, salida resumida, decisión tomada.
+      </p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3">Guion del ejercicio</h3>
+<ol class="space-y-3 text-neutral-300 text-sm list-decimal list-inside">
+<li><strong>Elige la feature:</strong> algo de 1-3 días de trabajo. Ni demasiado grande ni demasiado trivial.</li>
+<li><strong>Diseña el pipeline:</strong> escribe en papel "skill A → skill B → skill C". Justifica cada una.</li>
+<li><strong>Ejecuta el turno 1:</strong> llama a la primera skill. Registra el prompt exacto.</li>
+<li><strong>Revisa la salida:</strong> antes de avanzar, lee lo que salió. ¿Se puede usar?</li>
+<li><strong>Ejecuta los turnos 2 y 3:</strong> el mismo proceso. Cada salida alimenta la siguiente.</li>
+<li><strong>Documenta:</strong> crea un archivo <code class="text-purple-400">pipeline-log.md</code> con prompts, resultados, decisiones.</li>
+<li><strong>Reflexiona:</strong> donde tú <em>casi</em> ¿te saltaste una etapa? ¿Dónde te salvó la salida intermedia?</li>
+</ol>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">🎯</span> Criterio de éxito
+        </h3>
+<p class="text-neutral-300">
+          Lograste entregar la funcionalidad con 3 skills encadenadas, sin volver a "corregir" en la siguiente etapa lo que faltó en la anterior. Si volviste, anótalo en el log <em>dónde</em> e <em>por qué</em> — este es el aprendizaje real.
+        </p>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center">
+<span class="mr-3">📚</span> Resumen del módulo
+        </h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div><strong class="text-white">Composición &gt; skill individual</strong><span class="text-neutral-400"> — los pipelines resuelven workflows, no solo problemas aislados</span></div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div><strong class="text-white">4 patrones básicos</strong><span class="text-neutral-400"> — secuencial, fan-out, fan-in, loop. Combinables.</span></div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div><strong class="text-white">grill → PRD → issues → triage → tdd</strong><span class="text-neutral-400"> — pipeline canónico, memorízalo</span></div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div><strong class="text-white">CONTEXT.md como pegamento</strong><span class="text-neutral-400"> — estado durable entre skills, Glossary + Decisions</span></div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div><strong class="text-white">Las macros recurrentes valen una skill</strong><span class="text-neutral-400"> — 3+ proyectos que la usan = lista para promover</span></div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div><strong class="text-white">Omitir una etapa cuesta caro</strong><span class="text-neutral-400"> — el error se propaga, el retrabajo crece exponencialmente</span></div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div><strong class="text-white">Entre proyectos mediante un Glossary compartido</strong><span class="text-neutral-400"> — lenguaje ubicuo entre repos</span></div>
+</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-purple-400 mb-2">Siguiente módulo:</h3>
+<p class="text-neutral-300">3.2 — Pipelines avanzados y debugging de composición</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="../trilha2/modulo-2-3.html">
+            ← Módulo anterior (2.3)
+          </a>
+<a class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors" href="modulo-3-2.html">
+            Siguiente módulo (3.2) →
+          </a>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="border-t border-dark-600 py-8 mt-16">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Curso de Skills — 2026</p>
+</div>
+</footer>
+<!-- SCRIPTS -->
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

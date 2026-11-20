@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 1.1 - Why Skills Exist | Skills Course</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Bordas dark suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (trilha emerald) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-900\/30 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5, 150, 105, 0.18); }
+
+    /* Light mode - red (boxes de erro) */
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+
+    /* Light mode - blue (boxes de dados) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+
+    /* Light mode - gradientes off */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+
+    /* Light mode - cores especiais */
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+
+    /* Light mode - nav */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    /* Code box */
+    .code-box {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    html:not(.dark) .code-box { background-color: #0f172a; color: #e2e8f0; }
+  </style>
+<link href="https://inematds.github.io/mp-skill/curso-skills/curso/trilha1/modulo-1-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/en/curso/trilha1/modulo-1-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/es/curso/trilha1/modulo-1-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha1/modulo-1-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-1-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../es/curso/trilha1/modulo-1-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🧠</span>
+<span class="font-bold text-lg hidden sm:inline">Skills Course</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10" href="index.html">
+<span class="sm:hidden">T1</span>
+<span class="hidden sm:inline">Fundamentals</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 hover:bg-blue-500/10" href="../trilha2/index.html">
+<span class="sm:hidden">T2</span>
+<span class="hidden sm:inline">About the Repo</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 hover:bg-purple-500/10" href="../trilha3/index.html">
+<span class="sm:hidden">T3</span>
+<span class="hidden sm:inline">Advanced</span>
+</a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20">
+<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+</svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-emerald-400" href="../../index.html">Start</a>
+<span>/</span>
+<a class="hover:text-emerald-400" href="index.html">Fundamentals</a>
+<span>/</span>
+<span class="text-emerald-400">Module 1.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">
+        MODULE 1.1
+      </span>
+<h3 class="text-2xl font-bold mb-2">🧩 Why skills exist</h3>
+<p class="text-lg text-neutral-400 max-w-3xl mb-2">
+        The 4 problems that kill projects with agents—and how skills solve each one.
+      </p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-emerald-400">7</div>
+<div class="text-xs text-neutral-400">Sections</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-emerald-400">35</div>
+<div class="text-xs text-neutral-400">Minutes</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-emerald-400">Basic</div>
+<div class="text-xs text-neutral-400">Level</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-emerald-400">Theory</div>
+<div class="text-xs text-neutral-400">Type</div>
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN -->
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<h2 class="text-2xl font-bold mb-6">Detailed content</h2>
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📦 What is a skill in Claude Code</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        One <strong class="text-emerald-400">skill</strong> is a package of instructions and tools that changes Claude Code's behavior for a specific task. Instead of explaining the same process every day ("before coding, write a test"), you package that logic into a skill, and the agent loads it when needed.
+      </p>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Technically, a skill is a directory with a file <strong>SKILL.md</strong> (YAML frontmatter + Markdown body) that describes <em>when to activate</em> e <em>how to act</em>. It can include slash commands, sub-agents, hooks, and references to other skills.
+      </p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center">
+<span class="mr-2">⚙️</span> Three ways to invoke a skill
+        </h3>
+<ul class="space-y-3 text-neutral-300">
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">•</span>
+<span><strong class="text-emerald-400">Explicit slash command:</strong> user types <code class="bg-dark-700 px-2 py-0.5 rounded">/grill-me</code> or <code class="bg-dark-700 px-2 py-0.5 rounded">/tdd</code> — deliberate invocation.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">•</span>
+<span><strong class="text-emerald-400">Automatic trigger:</strong> the agent reads the skill description and activates it when the request matches (e.g., "let’s refactor this" -&gt; <code class="bg-dark-700 px-2 py-0.5 rounded">/improve-codebase-architecture</code>).</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">•</span>
+<span><strong class="text-emerald-400">Composition:</strong> one skill calls another. <code class="bg-dark-700 px-2 py-0.5 rounded">/make-plan</code> can call <code class="bg-dark-700 px-2 py-0.5 rounded">/grill-me</code> internally.</span>
+</li>
+</ul>
+</div>
+<div class="code-box bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-neutral-300"><span class="text-neutral-500"># Minimum SKILL.md structure</span>
+<span class="text-emerald-400">---</span>
+<span class="text-blue-400">name:</span> grill-me
+<span class="text-blue-400">description:</span> Stress-tests a plan before coding.
+  Use when the user says "I'm going to start implementing",
+  "I have an idea", "does it make sense to do it this way?".
+<span class="text-emerald-400">---</span>
+
+<span class="text-neutral-500"># Grill Me</span>
+
+You're a skeptical senior. Before accepting any plan:
+
+1. List 5 assumptions implicit in the user's request.
+2. For each one, ask "what if this is wrong?".
+3. Suggest the cheapest experiment to validate each one.
+4. Only then return the refined plan.
+</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Instruction priority
+        </h3>
+<p class="text-neutral-300 mb-2">
+          When there's a conflict, the order of precedence is: <strong>system prompt &gt; active skill &gt; CLAUDE.md &gt; user request</strong>. A well-crafted skill “anchors” behavior even if the user tries a shortcut.
+        </p>
+<p class="text-neutral-300">
+          Example: if <code class="bg-dark-700 px-2 py-0.5 rounded">/tdd</code> if this is active and the user says "skip the test this time," the agent refuses—the skill wins.
+        </p>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🎯 Problem #1 — Misalignment</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        The most costly problem isn’t incorrect code—it’s code <strong class="text-emerald-400">right about the wrong thing</strong>. The user asks for X but wants Y, the agent implements X perfectly, and two weeks later the feature gets thrown away.
+      </p>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center">
+<span class="mr-2">📚</span> Citation—David Thomas (The Pragmatic Programmer)
+        </h3>
+<blockquote class="text-neutral-300 italic border-l-4 border-blue-500/40 pl-4">
+          "No-one, not even users, knows exactly what they want. Even when they do, they cannot articulate it. And even when they articulate it, they will change their minds tomorrow."
+        </blockquote>
+<p class="text-neutral-400 text-sm mt-3">
+          Conclusion: accepting the user's literal request is almost always a trap. Skills like <code class="bg-dark-700 px-2 py-0.5 rounded">/grill-me</code> exist to force a discovery conversation <em>before</em> of the code.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ BEFORE — Without grilling</h4>
+<p class="text-sm text-neutral-400 mb-3">User:</p>
+<div class="code-box bg-dark-800 rounded p-3 mb-3 text-neutral-300">
+            "Add a CSV export button to the reports screen."
+          </div>
+<p class="text-sm text-neutral-400 mb-2">Agent:</p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>Code a CSV button in 2 hours.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>User tests: "but I wanted Excel with formatting."</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>Rework. The CSV goes in the trash.</span>
+</li>
+</ul>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ AFTER — With /grill-me</h4>
+<p class="text-sm text-neutral-400 mb-3">The agent asks:</p>
+<ul class="space-y-2 text-neutral-300 text-sm mb-3">
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>"Who will open this file? Excel, Sheets, a BI tool?"</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>"Do you need formatting (colors, totals), or just raw data?"</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>"How many rows? CSV files freeze above 1M in Excel."</span>
+</li>
+</ul>
+<p class="text-sm text-neutral-300">User responds -&gt; agent codes an XLSX with formulas. <strong class="text-emerald-400">Zero rework.</strong></p>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Warning sign
+        </h3>
+<p class="text-neutral-300">
+          If the agent has never corrected you, asked for clarification, or disagreed with you, it's serving you, not helping you. A good discovery skill should create productive friction in the first few exchanges.
+        </p>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🗣️ Problem #2 — Verbosity</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        When agent and human don't share vocabulary, every conversation has to be explained from scratch. Eric Evans (author of <em>Domain-Driven Design</em>) calls this the absence of <strong class="text-emerald-400">ubiquitous language</strong>: terms the whole team—humans and agents—uses consistently.
+      </p>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center">
+<span class="mr-2">📖</span> Eric Evans — Domain-Driven Design
+        </h3>
+<p class="text-neutral-300 mb-3">
+          Evans’s core idea: the code should speak the language of the business. If you have to translate "PaymentBatch" to "batch of charges" every time you open a file, the model is wrong.
+        </p>
+<p class="text-neutral-300">
+          With agents, the loss is amplified: each new conversation starts from scratch because the agent didn't "live through" the previous discussions. Skills with a fixed glossary (e.g., <code class="bg-dark-700 px-2 py-0.5 rounded">/grill-with-docs</code>) inject the ubiquitous language into every prompt.
+        </p>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        A concrete example. Imagine a course where “lesson” can be a placeholder OR a real instance materialized with a student and progress. Without ubiquitous language, you write it like this:
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Verbose (without ubiquitous language)</h4>
+<div class="code-box bg-dark-800 rounded p-4 text-sm text-neutral-300 leading-relaxed">
+            "There's a problem when a lesson inside a section of a course is made 'real' for a specific student and the previous lessons in that section weren't made 'real' too — the progress bar shows the wrong percentage."
+          </div>
+<p class="text-neutral-400 text-sm mt-3">62 words. Quotation marks around "real" three times. Rebuilds the concept from scratch.</p>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Concise (with ubiquitous language)</h4>
+<div class="code-box bg-dark-800 rounded p-4 text-sm text-neutral-300 leading-relaxed">
+            "There's a problem with the materialization cascade — when a lesson is materialized out of order, the progress is miscalculated."
+          </div>
+<p class="text-neutral-400 text-sm mt-3">21 words. The terms "materialization cascade" and "materialized" carry all the context.</p>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> The 3 benefits of a ubiquitous language with agents
+        </h3>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2">
+<span class="text-primary mt-1">1.</span>
+<span><strong>Brevity:</strong> one word carries a paragraph of context.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-primary mt-1">2.</span>
+<span><strong>Accuracy:</strong> "materialize" means exactly one thing, with no ambiguity.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-primary mt-1">3.</span>
+<span><strong>Audit:</strong> commits, PRs, and tickets share the same dictionary.</span>
+</li>
+</ul>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🧪 Problem #3 — Code that doesn't work</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        LLMs are trained to produce code that <em>seems</em> right. Types match, imports exist, syntax is valid — and yet the logic is wrong. Without an external signal (tests), the agent believes its own output.
+      </p>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        The classic solution is <strong class="text-emerald-400">TDD (Test-Driven Development)</strong>: write the test first, watch it fail (red), implement the minimum to make it pass (green), then refactor. Skills like <code class="bg-dark-700 px-2 py-0.5 rounded">/tdd</code> imposes this cycle on the agent.
+      </p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
+<span class="text-red-400 font-bold">🔴</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-red-400 mb-2">RED — Write the failing test</h4>
+<p class="text-sm text-neutral-400 mb-3">Before writing a line of implementation, describe the expected behavior in a test.</p>
+<p class="text-neutral-300 text-sm">
+              Why it works: it forces you to define <strong>what</strong> before the <strong>how</strong>. If you can’t write the test, you don’t understand the requirement. A failing test confirms that you’re testing something real—not an empty test that always passes.
+            </p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">🟢</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-emerald-400 mb-2">GREEN — Implement the minimum</h4>
+<p class="text-sm text-neutral-400 mb-3">The rule: the shortest, simplest code that makes the test pass. It can be ugly. It can be duplicated. It works.</p>
+<p class="text-neutral-300 text-sm">
+              Why it works: it blocks the temptation to "go ahead and get it ready for the next case." Each test buys one line of code, nothing more.
+            </p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">🔵</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-blue-400 mb-2">REFACTOR — Clean up with the safety net in place</h4>
+<p class="text-sm text-neutral-400 mb-3">With the tests green, you can now reorganize names, extract functions, remove duplication—without worrying about breaking anything.</p>
+<p class="text-neutral-300 text-sm">
+              Why it works: the refactoring happens <strong>afterward</strong> that behavior is locked in by tests. If a refactor breaks the logic, the test alerts you in seconds.
+            </p>
+</div>
+</div>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center">
+<span class="mr-2">⚠️</span> Attention — the TDD anti-pattern with agents
+        </h3>
+<p class="text-neutral-300">
+          The most common mistake: asking the agent to “implement X and then write the tests.” The agent will write tests that <em>are in its code</em>, not tests that would validate the requirement. <strong>A test afterward isn’t TDD—it’s theater.</strong>
+</p>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🏚️ Problem #4 — Ball of mud</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Code rots. Foote and Yoder documented this in 1997 with the term <strong class="text-emerald-400">"Big Ball of Mud"</strong>: systems that grow without coherent architecture because each feature was rushed in, without refactoring. With agents, the pace increases—and so does the decay.
+      </p>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        The wrong intuition: "I’ll ask the agent to refactor everything now." The right intuition: <strong>refactor as an opportunity, not an event</strong>. You don’t rewrite the system; you identify a duplication and unify it when you already need to work in that area.
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Destructive refactor</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>"Refactor the entire payment module" — 2 weeks, 50 files, impossible-to-review PR.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>Change a class name and break 14 places no one noticed.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>Feature flag stays on for 3 months. New and old code coexist.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>Result: a ball of mud with another layer on top.</span>
+</li>
+</ul>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Deepening opportunities</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>Before touching a file, run <code class="bg-dark-700 px-1 rounded">/improve-codebase-architecture</code> in it.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>Skill identifies specific duplication: “this function exists in 3 places as variations.”</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>Unifies <em>only</em> that case. An 80-line PR, reviewable in 10 minutes.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>Result: every feature makes the code a little better (the scout rule).</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Practical example — identifying duplication
+        </h3>
+<p class="text-neutral-300 mb-3">
+          Are you going to work on the <code class="bg-dark-700 px-2 py-0.5 rounded">UserController</code>. First, run <code class="bg-dark-700 px-2 py-0.5 rounded">/improve-codebase-architecture UserController</code>. The skill answers:
+        </p>
+<div class="code-box bg-dark-800 rounded p-4 text-sm text-neutral-300 leading-relaxed">
+          "I found <strong class="text-primary">3 similar implementations</strong> for email validation:<br/>
+          - UserController.create (line 42)<br/>
+          - AdminController.invite (line 78)<br/>
+          - WebhookController.signup (line 31)<br/>
+<br/>
+          They differ only in how they handle a blocked domain. I suggest extracting <code>EmailValidator.validate(email, options)</code> and refactor the 3 callers in a PR before adding your new code."
+        </div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🔗 How skills compose</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Individual skills already help. But the real gains appear when they <strong class="text-emerald-400">compose into workflows</strong> — each one solves a problem, and one’s output feeds the next.
+      </p>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Typical workflow for a feature, from scratch to production code:
+      </p>
+<div class="code-box bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-neutral-300">
+   <span class="text-emerald-400">/grill-with-docs</span>        Stress-testa a ideia contra docs e ADRs
+          │              <span class="text-neutral-500">(elimina desalinhamento, problema #1)</span>
+          ▼
+   <span class="text-emerald-400">/to-prd</span>                 Vira documento de produto curto e cravado
+          │              <span class="text-neutral-500">(fixa linguagem ubiqua, problema #2)</span>
+          ▼
+   <span class="text-emerald-400">/to-issues</span>              Quebra o PRD em issues pequenas e testaveis
+          │              <span class="text-neutral-500">(escopo pequeno = menos ball of mud)</span>
+          ▼
+   <span class="text-emerald-400">/tdd</span>                    Para cada issue: teste vermelho -&gt; verde -&gt; refactor
+          │              <span class="text-neutral-500">(resolve problema #3)</span>
+          ▼
+   <span class="text-emerald-400">/triage</span>                 Revisa diff, sugere refator pontual antes do merge
+                         <span class="text-neutral-500">(combate problema #4, deepening opportunity)</span>
+</pre>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Each arrow is a deliberate transition. You don’t have to hold the entire context in your head—the skills handle the handoff. The PRD becomes input for the <code class="bg-dark-700 px-2 py-0.5 rounded">/to-issues</code>; the issue becomes input for the <code class="bg-dark-700 px-2 py-0.5 rounded">/tdd</code>; the diff becomes input for the <code class="bg-dark-700 px-2 py-0.5 rounded">/triage</code>.
+      </p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center">
+<span class="mr-2">🧱</span> Principle: skills are building blocks, not monoliths
+        </h3>
+<p class="text-neutral-300 mb-3">
+          A skill that tries to do “the whole feature cycle” is worse than five small chained skills. Reasons:
+        </p>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">•</span>
+<span><strong>Reuse:</strong> <code class="bg-dark-700 px-1 rounded">/grill-me</code> works for any plan, not just features.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">•</span>
+<span><strong>Replacement:</strong> replace <code class="bg-dark-700 px-1 rounded">/tdd</code> by <code class="bg-dark-700 px-1 rounded">/bdd</code> in one project doesn’t break the rest.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">•</span>
+<span><strong>Maintenance:</strong> a short skill fits in your head and is easier to audit.</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">•</span>
+<span><strong>Free composition:</strong> same skill across different flows (e.g., <code class="bg-dark-700 px-1 rounded">/grill-me</code> before the PRD, before the ADR, before migration).</span>
+</li>
+</ul>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Practical rule
+        </h3>
+<p class="text-neutral-300">
+          If you're writing a skill and the description needs more than 2 sentences to explain when to activate it, it's doing too much. Break it up.
+        </p>
+</div>
+</section>
+<!-- SECAO 7 - RESUMO -->
+<section class="mb-12" id="resumo">
+<div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center">
+<span class="mr-3">📌</span> Module Summary
+        </h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Skill = behavior package</strong>
+<span class="text-neutral-400"> — SKILL.md with frontmatter that defines when to activate and how to act.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Problem #1: Misalignment</strong>
+<span class="text-neutral-400"> — the right code for the wrong thing. Address it with /grill-me and deliberate discovery.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Problem #2: Verbosity</strong>
+<span class="text-neutral-400"> — without a ubiquitous language, every conversation starts from scratch. Solve this with a fixed glossary in the skill.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Problem #3: Code that's wrong but looks right</strong>
+<span class="text-neutral-400"> — the agent believes its own output. Solve this with TDD (red -&gt; green -&gt; refactor) enforced by /tdd.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Problem #4: Ball of mud</strong>
+<span class="text-neutral-400"> — code decays quickly. Address it by refactoring as an opportunity (/improve-codebase-architecture).</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Skills compose into workflows</strong>
+<span class="text-neutral-400"> — /grill-with-docs -&gt; /to-prd -&gt; /to-issues -&gt; /tdd -&gt; /triage. Building blocks, not monoliths.</span>
+</div>
+</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8 border border-dark-600">
+<h3 class="font-semibold text-emerald-400 mb-2">Next Module:</h3>
+<p class="text-neutral-300">1.2 — Anatomy of a SKILL.md: frontmatter, description triggers, and body</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">
+            ← Back to Track
+          </a>
+<a class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors" href="modulo-1-2.html">
+            Next Module →
+          </a>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="border-t border-dark-600 py-8 mt-16">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Skills Course — 2026 | <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'light') {
+      html.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      html.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

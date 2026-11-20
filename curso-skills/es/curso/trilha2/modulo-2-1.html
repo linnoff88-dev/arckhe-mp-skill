@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 2.1 — Qué es mp-skill | Skills For Real Engineers</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    /* Light mode overrides - OBRIGATORIO */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (trilha BLUE — T2) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .bg-blue-900\/30 { background-color: rgba(37, 99, 235, 0.10); }
+    html:not(.dark) .bg-blue-900\/40 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37, 99, 235, 0.18); }
+    html:not(.dark) .bg-blue-600 { background-color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500:hover { background-color: #3b82f6; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+
+    /* Light mode - emerald (T1 inativa) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+
+    /* Light mode - purple (T3 inativa) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+
+    /* Light mode - red (Fazer/Evitar) */
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+
+    /* Light mode - remove gradientes (fundo uniforme) */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+
+    /* Light mode - cores especiais */
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+
+    /* Light mode - nav */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    /* Dark mode - bordas e linhas divisorias mais suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* Code box */
+    .code-box { font-family: 'Menlo', 'Monaco', 'Courier New', monospace; }
+  </style>
+<link href="https://inematds.github.io/mp-skill/curso-skills/curso/trilha2/modulo-2-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/en/curso/trilha2/modulo-2-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/es/curso/trilha2/modulo-2-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha2/modulo-2-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../en/curso/trilha2/modulo-2-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-2-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<!-- Logo + INEMA.CLUB -->
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🛠️</span>
+<span class="font-bold text-lg hidden sm:inline">Skills For Real Engineers</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<!-- Trilhas + Theme Toggle -->
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html">
+<span class="sm:hidden">T1</span>
+<span class="hidden sm:inline">Fundamentos</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html">
+<span class="sm:hidden">T2</span>
+<span class="hidden sm:inline">mp-skill</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html">
+<span class="sm:hidden">T3</span>
+<span class="hidden sm:inline">Workflow</span>
+</a>
+<!-- Theme Toggle -->
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20">
+<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+</svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Inicio</a>
+<span>/</span>
+<a class="hover:text-blue-400" href="index.html">Ruta 2 — mp-skill</a>
+<span>/</span>
+<span class="text-blue-400">Módulo 2.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">
+        MÓDULO 2.1 — INTRODUCCIÓN
+      </span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📦 Módulo 2.1 — Qué es mp-skill</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">
+<strong class="text-blue-400">Skills de Matt Pocock empaquetadas para ti.</strong> Un conjunto pequeño, componible y adaptable de skills para Claude Code y Codex — sin framework, sin proceso integrado, sin tomar el control de tu workflow.
+      </p>
+<!-- Stats Banner -->
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-blue-400">8</div>
+<div class="text-xs text-neutral-400">Secciones</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-blue-400">~25</div>
+<div class="text-xs text-neutral-400">Minutos</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-blue-400">Básico</div>
+<div class="text-xs text-neutral-400">Nivel</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-blue-400">Conceptual</div>
+<div class="text-xs text-neutral-400">Tipo</div>
+</div>
+</div>
+</div>
+</header>
+<!-- CONTEÚDO PRINCIPAL -->
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SEÇÃO 1 — ORIGEM DO PROJETO -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">👨‍🏫 Origen del proyecto</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        O <strong class="text-blue-400">mp-skill</strong> es la versión en portugués del repositorio <code class="text-blue-400">mattpocock/skills</code>, creado por <strong class="text-blue-400">Matt Pocock</strong> — el mismo tipo detrás de <em>Total de TypeScript</em>, de los artículos sobre TypeScript que probablemente ya te sacaron de algún apuro, y del boletín <em>AI Hero</em> sobre IA aplicada a la ingeniería.
+      </p>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Matt empezó a crear estas skills después de enfrentarse a los <strong class="text-blue-400">failure modes</strong> recurrentes de Claude Code y Codex: el agente olvida el contexto entre sesiones, inventa APIs que no existen, omite pruebas, hace refactors enormes sin necesidad o simplemente "alucina" un plan y empieza a escribir código que no funciona.
+      </p>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        En vez de aceptar esto como una "limitación del modelo", Matt decidió <strong class="text-blue-400">codificar las soluciones</strong>. Cada vez que descubría un patrón que evitaba un modo de falla, se convertía en una skill. Cada vez que tenía que repetir una instrucción manualmente en tres sesiones seguidas, se convertía en una skill. El resultado es un repositorio que parece pequeño, pero resuelve decenas de problemas reales.
+      </p>
+<!-- Box conceito principal -->
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center">
+<span class="mr-2">🎯</span> La premisa central
+        </h3>
+<p class="text-neutral-300 mb-4">
+          Las Skills son <strong class="text-blue-400">memoria externa del agente</strong>. En vez de volver a explicar en cada sesión cómo quieres que haga TDD, cómo escribe los commits o cómo abre PRs, lo registras una vez y la skill lo carga en el contexto adecuado, en el momento adecuado.
+        </p>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2">
+<span class="text-blue-400 mt-1">•</span>
+<span>Los modos de falla se convierten en <strong>guardrails reutilizables</strong>, no anotaciones en CLAUDE.md</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-blue-400 mt-1">•</span>
+<span>Cada skill es un archivo Markdown: versionable, con diff y revisable</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-blue-400 mt-1">•</span>
+<span>El agente carga solo lo que importa para la tarea actual</span>
+</li>
+</ul>
+</div>
+<!-- Tip box -->
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Por qué las skills &gt; «programar por intuición»
+        </h3>
+<p class="text-neutral-300 mb-3">
+          "Vibe coding" — dejar que el agente improvise sin dirección — funciona en demos de cinco minutos. En un proyecto real, tres sesiones después estás corrigiendo la misma clase de error por quinta vez.
+        </p>
+<p class="text-neutral-300">
+          Las skills cambian las reglas del juego: tú <strong class="text-primary">paga el costo cognitivo una sola vez</strong> (escribir la skill) y aprovechas el beneficio en cada sesión futura. Es <em>inversión</em>, no <em>improvisación</em>.
+        </p>
+</div>
+<p class="text-neutral-300 mb-2">
+        Matt documenta la evolución del proyecto en su newsletter. Vale la pena leerla, especialmente las publicaciones en las que explica <em>por qué</em> nació una skill (qué error del agente intenta corregir).
+      </p>
+<p class="text-neutral-400 text-sm">
+        🔗 Newsletter: <a class="text-sky-400 hover:text-sky-300" href="https://www.aihero.dev/s/skills-newsletter" target="_blank">aihero.dev/s/skills-newsletter</a>
+</p>
+</section>
+<!-- SEÇÃO 2 — FILOSOFIA -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🧩 Filosofía: pequeñas, componibles y adaptables</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Tres adjetivos definen el proyecto: <strong class="text-blue-400">small</strong> (pequeñas), <strong class="text-blue-400">composable</strong> (componibles) y <strong class="text-blue-400">adaptable</strong> (adaptables). Cada skill hace una cosa, la hace bien y puede combinarse con otras sin complicaciones.
+      </p>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Esta filosofía es una <em>respuesta directa</em> a los frameworks "todo en uno" que aparecieron en el ecosistema —GSD, BMAD-METHOD, Spec-Kit—. Funcionan, pero tienen un costo: adoptas todo su proceso o nada.
+      </p>
+<!-- Grid fazer vs evitar -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Skills (mp-skill)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span><strong>Pequeñas</strong> — una skill, un problema, ~200 líneas de Markdown</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span><strong>Componibles</strong> — usa <code>/grill-me</code> + <code>/tdd</code> + <code>/handoff</code> sin fricción</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span><strong>Adaptables</strong> — haz un fork, edítalo, agrega tu regla y haz commit</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span><strong>Opcionales</strong> — tú eliges cuáles instalar e ignoras las demás</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span><strong>Transparentes</strong> — abre el .md, lo lee, lo entiende y lo ajusta</span>
+</li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Frameworks "todo en uno"</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span><strong>Grandes</strong> — adoptarla exige reorganizar todo el proyecto</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span><strong>Monolíticas</strong> — partes acopladas, no se puede usar solo una</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span><strong>Opinionados</strong> — asumen un flujo (PRD → tareas → código) que puede no ser el tuyo</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span><strong>Caja negra</strong> — comportamiento incorporado en scripts/templates</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span><strong>Dependencia del proveedor</strong> — salir cuesta más que entrar</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Tip box -->
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">🔧</span> "Hack around with them"
+        </h3>
+<p class="text-neutral-300 mb-3">
+          Matt usa esta expresión en el README: <em>"these skills are meant to be hacked around with"</em>. En otras palabras: <strong class="text-primary">no lo trates como producto final</strong>. Tómalo como punto de partida.
+        </p>
+<p class="text-neutral-300 mb-3">
+          Cada skill es un archivo Markdown de 100-300 líneas. Lo abres, lo lees, ajustas el tono, cambias un ejemplo, agregas una sección específica de tu equipo y eliminas lo que no usas. Sin paso de build, sin framework, sin pedir permiso.
+        </p>
+<p class="text-neutral-300">
+          Esto es lo opuesto a <em>"lo instalé y seguí el tutorial"</em>. É <strong class="text-primary">"lo traje a mi proyecto e hice mi"</strong>.
+        </p>
+</div>
+</section>
+<!-- SEÇÃO 3 — BUCKETS -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🗂️ Buckets: cómo se organizan las skills</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        El repositorio agrupa las skills en <strong class="text-blue-400">buckets</strong> (carpetas) según la madurez y la finalidad. Esto no es solo un detalle organizativo: define <em>qué skills aparecen públicamente</em> y cuáles quedan internas.
+      </p>
+<!-- Code box -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">📁</span> Árbol de buckets
+        </h3>
+<pre class="code-box text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-blue-400">skills/</span>
+├── <span class="text-emerald-400">engineering/</span>      <span class="text-neutral-500"># daily code work — TDD, code review, debugging</span>
+├── <span class="text-emerald-400">productivity/</span>     <span class="text-neutral-500"># daily non-code workflow — handoff, grill-me</span>
+├── <span class="text-emerald-400">misc/</span>             <span class="text-neutral-500"># kept around but rarely used</span>
+├── <span class="text-yellow-400">personal/</span>         <span class="text-neutral-500"># tied to author's setup, not promoted</span>
+├── <span class="text-yellow-400">in-progress/</span>      <span class="text-neutral-500"># drafts not yet ready to ship</span>
+└── <span class="text-red-400">deprecated/</span>       <span class="text-neutral-500"># archived, kept for reference</span></pre>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Las <strong class="text-emerald-400">las tres primeras</strong> (engineering, productivity, misc) son <strong class="text-blue-400">públicas</strong>: aparecen en el README del proyecto y en la lista <code class="text-blue-400">.claude-plugin/plugin.json</code>. Las <strong class="text-yellow-400">las tres últimas</strong> (personal, en progreso, obsoletas) quedan <strong class="text-yellow-400">internas</strong>: existen en el repo, pero no se exponen oficialmente como skills del plugin.
+      </p>
+<!-- Box dados -->
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center">
+<span class="mr-2">📋</span> Regla de promoción (del CLAUDE.md del mp-skill)
+        </h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-400">Toda skill en engineering/, productivity/ o misc/</strong> debe tener:
+            <ul class="ml-5 mt-1 space-y-1">
+<li>• Entrada en el <code>README.md</code> de la raíz (enlazando a <code>SKILL.md</code>)</li>
+<li>• Entrada en el <code>.claude-plugin/plugin.json</code></li>
+<li>• Entrada en el <code>README.md</code> del propio bucket (con una descripción de una línea)</li>
+</ul>
+</li>
+<li><strong class="text-blue-400">Skills en personal/, in-progress/, deprecated/</strong> NO pueden aparecer en ninguno de estos dos lugares públicos.</li>
+</ul>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Esta estructura mantiene el repositorio <strong class="text-blue-400">honesto</strong>: lo que está promovido se probó y Matt lo usa de verdad; lo que está en drafts está claramente identificado; lo que se descontinuó queda documentado, pero no estorba a quien está empezando.
+      </p>
+</section>
+<!-- SEÇÃO 4 — DIFERENÇA VS FRAMEWORKS -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">⚖️ Diferencia frente a GSD / BMAD / Spec-Kit</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        GSD (Get-Stuff-Done), BMAD-METHOD y Spec-Kit son frameworks populares para el "agentic coding". Funcionan, pero resuelven un problema diferente al que resuelven las skills. Vale la pena entender la diferencia antes de elegir.
+      </p>
+<!-- Grid comparativo -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ mp-skill (skills compuestas)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>Tú <strong>elige</strong> qué skills usar en cada momento</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>Convive con tu workflow actual sin reescribir nada</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>Cada skill es independiente: una falla no derriba a las demás</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>Curva de adopción <strong>incremental</strong>: instala una, úsala y luego agrega otra</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400">✓</span>
+<span>Salida fácil: eliminar una skill es borrar un archivo</span>
+</li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Frameworks con proceso integrado</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>O <strong>el framework elige</strong> la secuencia de pasos que tú das</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>Exige reorganizar carpetas, archivos y agentes</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>Componentes acoplados: romper uno afecta a los demás</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>Curva de adopción <strong>todo o nada</strong>: aprende el método completo o no lo uses</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-red-400">✗</span>
+<span>Salida costosa: quitar el framework es una refactorización</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Tabela comparativa -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<h3 class="text-lg font-semibold text-blue-400 mb-4">📊 Comparación por dimensión</h3>
+<table class="w-full text-sm">
+<thead>
+<tr class="border-b border-dark-600">
+<th class="text-left py-3 pr-4 text-neutral-400 font-semibold">Dimensión</th>
+<th class="text-left py-3 pr-4 text-blue-400 font-semibold">mp-skill</th>
+<th class="text-left py-3 text-red-400 font-semibold">GSD / BMAD / Spec-Kit</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-dark-600 text-neutral-300">
+<tr>
+<td class="py-3 pr-4 font-medium">Control</td>
+<td class="py-3 pr-4">Tú decides cuándo entra cada skill</td>
+<td class="py-3">El framework determina el orden de los pasos</td>
+</tr>
+<tr>
+<td class="py-3 pr-4 font-medium">Flexibilidad</td>
+<td class="py-3 pr-4">Alta — detecta 1, ignora 9</td>
+<td class="py-3">Descarga — paquete cerrado</td>
+</tr>
+<tr>
+<td class="py-3 pr-4 font-medium">Curva</td>
+<td class="py-3 pr-4">Incremental (skill por skill)</td>
+<td class="py-3">Empinado (método completo de una vez)</td>
+</tr>
+<tr>
+<td class="py-3 pr-4 font-medium">Personalización</td>
+<td class="py-3 pr-4">Editar Markdown</td>
+<td class="py-3">Reescribir plantillas / scripts</td>
+</tr>
+<tr>
+<td class="py-3 pr-4 font-medium">Acoplamiento</td>
+<td class="py-3 pr-4">Cero pausas entre skills</td>
+<td class="py-3">Alta entre componentes</td>
+</tr>
+<tr>
+<td class="py-3 pr-4 font-medium">Cuándo tiene sentido</td>
+<td class="py-3 pr-4">Cuando ya tienes una forma de trabajar y quieres reforzarla</td>
+<td class="py-3">Cuando todavía no tienes un proceso y aceptas adoptar el suyo</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        No es «uno es mejor que el otro», sino <strong class="text-blue-400">problema diferente</strong>. Si necesitas un proceso completo desde cero, usa un framework. Si ya tienes un proceso y quieres reforzar los puntos débiles del agente, usa skills.
+      </p>
+</section>
+<!-- SEÇÃO 5 — QUEM USA E PARA QUÊ -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">👥 Quién lo usa y para qué</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Las skills no son exclusivas de un perfil. Lo que cambia es <em>cuáles</em> las skills se incorporan y en <em>qué orden</em>. Tres perfiles comunes:
+      </p>
+<!-- Grid de perfis -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-bold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">🧑‍💻</span> Ingeniero en solitario
+          </h4>
+<p class="text-sm text-neutral-400 mb-3">Proyecto personal, trabajo freelance, startup en etapa inicial</p>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• Quiere un agente que <strong>no olvides</strong> contexto entre sesiones</li>
+<li>• Usa <code>/handoff</code>, <code>/grill-me</code>, <code>/tdd</code></li>
+<li>• Adapta todo a su estilo</li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-bold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">👥</span> Equipo pequeño
+          </h4>
+<p class="text-sm text-neutral-400 mb-3">2-8 devs, misma codebase</p>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• Quiere <strong>estandarizar</strong> cómo trabaja el agente para todos</li>
+<li>• Haz un fork del repo y confirma las personalizaciones</li>
+<li>• Cada PR de skill se revisa como código</li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-bold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">🏢</span> Equipo empresarial
+          </h4>
+<p class="text-sm text-neutral-400 mb-3">Cumplimiento normativo, revisión formal del código</p>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li>• Las skills se convierten en <strong>política versionada</strong> ("el agente NUNCA hace X")</li>
+<li>• La auditoría se vuelve trivial: todo está en Markdown</li>
+<li>• Se integra con la revisión de PR existente</li>
+</ul>
+</div>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        ¿Y cuál es la curva de adopción típica? Casi siempre sigue el mismo orden: instala el repo, prueba <em>una</em> skill, observa el beneficio y agrega la siguiente. En dos semanas, se convierte en un workflow.
+      </p>
+<!-- Timeline -->
+<h3 class="text-lg font-semibold text-blue-400 mb-4">⏱️ Cronología típica de adopción</h3>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">1</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Día 1 — Instala el plugin</h4>
+<p class="text-sm text-neutral-400 mb-2">~10 minutos</p>
+<p class="text-neutral-300 text-sm">Clona el repo, regístralo como plugin en Claude Code y confirma que <code>/grill-me</code> aparece. Todavía no lo usa: solo verifica que se haya cargado.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">2</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Día 2-3 — Primera skill: /grill-me</h4>
+<p class="text-sm text-neutral-400 mb-2">~30 minutos</p>
+<p class="text-neutral-300 text-sm">Usa <code>/grill-me</code> antes de escribir código serio. Descubre que el agente hace preguntas que <em>él mismo</em> deberías haberlo hecho antes. Se vuelve un hábito en 2-3 sesiones.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">3</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Semana 1 — Agrega /tdd</h4>
+<p class="text-sm text-neutral-400 mb-2">~1 hora para interiorizar</p>
+<p class="text-neutral-300 text-sm">Usa <code>/tdd</code> en tareas nuevas. El agente empieza por la prueba, no por el código. Deja de "implementar y después probar": prueba primero, siempre.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">4</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Semana 2 — Flujo de trabajo completo</h4>
+<p class="text-sm text-neutral-400 mb-2">Ya es un hábito</p>
+<p class="text-neutral-300 text-sm">Compone: <code>/grill-me</code> → <code>/tdd</code> → <code>/code-review</code> → <code>/handoff</code>. Ya no piensas «¿qué skill?»: lo sabes.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 6 — LICENÇA E CONTRIBUIÇÃO -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">📜 Licencia y modelo de contribución</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        El proyecto es <strong class="text-blue-400">MIT</strong>. Traducción pragmática: puedes usar, copiar, modificar, distribuir y vender, en un proyecto personal, en una empresa o en un producto comercial. Lo único que se exige es mantener el aviso de copyright y la licencia en el código.
+      </p>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        El modelo de contribución es <strong class="text-blue-400">fork-friendly</strong>. Matt acepta PRs, pero espera que cada PR sea <em>enfocado</em>: una skill nueva, una corrección en una skill existente, una mejora de docs. Los PR gigantes ("reescribí todo") tienden a rechazarse —no por hostilidad, sino por <em>filosofía</em>: el proyecto es pequeño a propósito.
+      </p>
+<!-- Code box -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">🔀</span> Cómo abrir un PR contra mattpocock/skills
+        </h3>
+<pre class="code-box text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500"># 1. Fork no GitHub, depois:</span>
+git clone https://github.com/SEU_USER/skills.git
+cd skills
+git checkout -b minha-skill
+
+<span class="text-neutral-500"># 2. Criar a skill em engineering/ ou productivity/</span>
+mkdir -p skills/engineering/minha-skill
+$EDITOR skills/engineering/minha-skill/SKILL.md
+
+<span class="text-neutral-500"># 3. Registrar nos dois lugares públicos obrigatórios:</span>
+$EDITOR README.md                        <span class="text-neutral-500"># adicionar linha com link</span>
+$EDITOR .claude-plugin/plugin.json       <span class="text-neutral-500"># adicionar entrada</span>
+$EDITOR skills/engineering/README.md     <span class="text-neutral-500"># descrição de 1 linha no bucket</span>
+
+<span class="text-neutral-500"># 4. Commit + push + PR</span>
+git add .
+git commit -m "feat: add /minha-skill"
+git push origin minha-skill
+<span class="text-blue-400">gh pr create --base main</span></pre>
+</div>
+<!-- Tip box -->
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Antes de abrir un PR
+        </h3>
+<p class="text-neutral-300 mb-2">
+          Lee el <code>CONTRIBUTING.md</code> (si existe) y revisa los PRs recientes para entender qué suele aceptarse.
+        </p>
+<p class="text-neutral-300">
+          Una skill nueva debe justificar <strong class="text-primary">qué modo de falla resuelve</strong> — este es el criterio principal. "Me pareció genial" no cuenta; "evita que el agente olvide X después de Y" sí cuenta.
+        </p>
+</div>
+</section>
+<!-- SEÇÃO 7 — MP-SKILL VS MATTPOCOCK/SKILLS -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">🇧🇷 mp-skill vs mattpocock/skills</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Este repositorio (<strong class="text-blue-400">mp-skill</strong>, mantenido por <code>inematds</code>) es un <strong class="text-blue-400">fork activo</strong> del <code>mattpocock/skills</code> con dos objetivos adicionales:
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">🌐</span> Traducción al PT-BR
+          </h4>
+<p class="text-sm text-neutral-300 mb-2">
+            Skills traducidas al portugués, manteniendo los nombres de los comandos en inglés (<code>/grill-me</code>, <code>/tdd</code>) para mantener la compatibilidad con el original.
+          </p>
+<p class="text-sm text-neutral-300">
+            Ejemplos adaptados a la realidad brasileña cuando tiene sentido (fechas, formatos, contexto cultural).
+          </p>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">📚</span> Curso integrado
+          </h4>
+<p class="text-sm text-neutral-300 mb-2">
+            Esta página forma parte de un curso en 3 trilhas que enseña <strong>cuándo usar cada skill</strong> y cómo componer el workflow.
+          </p>
+<p class="text-sm text-neutral-300">
+            Ruta 1: Fundamentos · Ruta 2: mp-skill · Ruta 3: Workflow.
+          </p>
+</div>
+</div>
+<!-- Tip box -->
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">🔗</span> ¿Quieres el upstream original?
+        </h3>
+<p class="text-neutral-300 mb-2">
+          El repositorio oficial de Matt está en <a class="text-sky-400 hover:text-sky-300" href="https://github.com/mattpocock/skills" target="_blank">github.com/mattpocock/skills</a>. Las skills nuevas y las correcciones aparecen primero allí; mp-skill hace <em>rebase</em> periódico para incorporar cambios.
+        </p>
+<p class="text-neutral-300">
+          Si quieres contribuir con una skill nueva, abre un PR contra el <strong class="text-primary">upstream</strong>, no contra mp-skill. Aquí solo es traducción + curso.
+        </p>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        En resumen: <strong class="text-blue-400">mp-skill = mattpocock/skills + PT-BR + curso</strong>. La misma filosofía, el mismo conjunto base de skills, la misma estructura de buckets: solo se elimina la barrera del idioma y se agrega material didáctico.
+      </p>
+</section>
+<!-- SEÇÃO 8 — RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center">
+<span class="mr-3">📌</span> Resumen del Módulo
+        </h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3">
+<span class="text-blue-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Origen claro</strong>
+<span class="text-neutral-400"> — mp-skill nace de modos de falla reales de Claude Code / Codex, no de la teoría</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-blue-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Filosofía: small, composable, adaptable</strong>
+<span class="text-neutral-400"> — skills pequeñas que combinas y adaptas, no un framework que te dicta el proceso</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-blue-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Los buckets organizan la madurez</strong>
+<span class="text-neutral-400"> — engineering/productivity/misc son públicas; personal/in-progress/deprecated son internas</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-blue-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Diferente de GSD/BMAD/Spec-Kit</strong>
+<span class="text-neutral-400"> — tú eliges qué skills incluir; te dan el proceso completo</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-blue-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Adopción incremental</strong>
+<span class="text-neutral-400"> — instala → /grill-me → /tdd → workflow completo, en ~2 semanas</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-blue-400 mt-1">✓</span>
+<div>
+<strong class="text-white">MIT + compatible con forks</strong>
+<span class="text-neutral-400"> — úsalo libremente, personalízalo, contribuye con PRs enfocados</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-blue-400 mt-1">✓</span>
+<div>
+<strong class="text-white">mp-skill = upstream + PT-BR + curso</strong>
+<span class="text-neutral-400"> — misma base, con traducción y material didáctico integrado</span>
+</div>
+</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Siguiente módulo:</h3>
+<p class="text-neutral-300">2.2 — Instalación y configuración de mp-skill en Claude Code</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="../trilha1/modulo-1-6.html">
+            ← Módulo 1.6
+          </a>
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">
+            Volver a la Ruta 2
+          </a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-2.html">
+            Módulo 2.2 →
+          </a>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="border-t border-dark-600 py-8 mt-16">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Skills For Real Engineers · Curso en PT-BR sobre mp-skill · 2026</p>
+<p class="mt-2">
+<a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+        ·
+        <a class="text-sky-400 hover:text-sky-300" href="https://github.com/mattpocock/skills" target="_blank">Upstream: mattpocock/skills</a>
+</p>
+</div>
+</footer>
+<!-- SCRIPTS -->
+<script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

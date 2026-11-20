@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 1.3 — Ubiquitous Language: CONTEXT.md + ADRs | Skills Course</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    /* Light mode overrides - OBRIGATORIO */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (trilha emerald) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5, 150, 105, 0.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .bg-emerald-900\/30 { background-color: rgba(5, 150, 105, 0.10); }
+    html:not(.dark) .bg-emerald-900\/40 { background-color: rgba(5, 150, 105, 0.12); }
+
+    /* Light mode - vermelhos (grids X) */
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+
+    /* Light mode - azuis (dados) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+
+    /* Light mode - remove gradientes (fundo uniforme) */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+
+    /* Light mode - cores especiais */
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+
+    /* Light mode - nav */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* Code box */
+    .code-box { font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace; }
+    html:not(.dark) .code-box { background-color: #0f172a; color: #e2e8f0; }
+  </style>
+<link href="https://inematds.github.io/mp-skill/curso-skills/curso/trilha1/modulo-1-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/en/curso/trilha1/modulo-1-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/es/curso/trilha1/modulo-1-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha1/modulo-1-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-1-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../es/curso/trilha1/modulo-1-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎓</span>
+<span class="font-bold text-lg hidden sm:inline">Skills Course</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10" href="index.html">
+<span class="sm:hidden">T1</span>
+<span class="hidden sm:inline">Fundamentals</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html">
+<span class="sm:hidden">T2</span>
+<span class="hidden sm:inline">Practice</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html">
+<span class="sm:hidden">T3</span>
+<span class="hidden sm:inline">Advanced</span>
+</a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20">
+<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+</svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-emerald-400" href="../../index.html">Start</a>
+<span>/</span>
+<a class="hover:text-emerald-400" href="index.html">Track 1</a>
+<span>/</span>
+<span class="text-emerald-400">Module 1.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">
+        MODULE 1.3
+      </span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📖 Ubiquitous Language: CONTEXT.md + ADRs</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">1 word instead of 20.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-emerald-400">8</div>
+<div class="text-xs text-neutral-400">Sections</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-emerald-400">~40</div>
+<div class="text-xs text-neutral-400">Minutes</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-emerald-400">Basics</div>
+<div class="text-xs text-neutral-400">Level</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-emerald-400">Practice</div>
+<div class="text-xs text-neutral-400">Type</div>
+</div>
+</div>
+</div>
+</header>
+<!-- CONTEUDO -->
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🗣️ What is Ubiquitous Language</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+<strong class="text-emerald-400">Ubiquitous Language</strong> is a term coined by <strong>Eric Evans</strong>
+        in <em>Domain-Driven Design</em> (2003). The idea is simple: the team, code, and documentation share
+        exactly the same vocabulary. No translations between "business term" and "technical term." No synonyms.
+        No ambiguity. One word, one concept.
+      </p>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        In the context of working with agents (Claude Code, Codex, Copilot), ubiquitous language stops being a
+        “best practice” and becomes <strong class="text-emerald-400">critical infrastructure</strong>. Every ambiguous term costs tokens, attention, and iterations. Every well-defined term reduces prompts by orders of magnitude.
+      </p>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Tip: the 20→1 rule
+        </h3>
+<p class="text-neutral-300 mb-3">
+          The practical heuristic is: <strong>if you need 20 words to explain a concept to the agent
+every time it comes up, that concept deserves a name</strong>. Define it in CONTEXT.md once,
+          and use that name from then on.
+        </p>
+<p class="text-neutral-300">
+          The payoff is huge: you replace 20 repeated tokens on every turn with 1 named token and one definition line in the initial context.
+        </p>
+</div>
+<h3 class="text-xl font-bold mb-4">Example: “materialization cascade”</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ BEFORE (unnamed)</h4>
+<p class="text-neutral-300 text-sm mb-3">Every time the bug appeared, someone would write in the chat:</p>
+<p class="text-neutral-400 text-sm italic">
+            "When a user updates a derived field, all other fields that depend
+            on it need to be recalculated in order, and if one fails, the subsequent ones become
+            inconsistent, and we need to run everything again from the top..."
+          </p>
+<p class="text-red-400 text-xs mt-3">→ 40+ words, repeated across 12 different conversations.</p>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ LATER (named)</h4>
+<p class="text-neutral-300 text-sm mb-3">We defined in CONTEXT.md:</p>
+<p class="text-neutral-300 text-sm font-mono bg-dark-900/40 rounded p-2 mb-3">
+<strong>materialization cascade</strong>: sequential recalculation of derived fields after a mutation.
+          </p>
+<p class="text-neutral-300 text-sm italic">"The bug is in the materialization cascade when step 3 fails."</p>
+<p class="text-emerald-400 text-xs mt-3">→ 12 words, zero ambiguity.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Origin</div>
+<div class="text-neutral-300 text-sm">Eric Evans, DDD (2003)</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Principle</div>
+<div class="text-neutral-300 text-sm">1 concept = 1 name</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Gain</div>
+<div class="text-neutral-300 text-sm">Fewer tokens, less rework</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Where it lives</div>
+<div class="text-neutral-300 text-sm">CONTEXT.md + ADRs</div>
+</div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📑 Anatomy of CONTEXT.md</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        O <strong class="text-emerald-400">CONTEXT.md</strong> is the file that contains your project's ubiquitous language. It's the first file an agent reads when it starts working. Recommended minimum structure:
+      </p>
+<div class="code-box bg-dark-900 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-sm leading-relaxed"><span class="text-emerald-400"># MeuProjeto</span>
+
+<span class="text-emerald-400">## Language</span>
+
+<span class="text-yellow-400">**materialization cascade**</span>: recálculo sequencial de
+campos derivados após mutação de um campo-raiz.
+<span class="text-neutral-500">_Avoid_: "recálculo em cadeia", "refresh", "update propagation"</span>
+
+<span class="text-yellow-400">**handoff**</span>: documento estruturado escrito ao fim de uma
+sessão pra continuar contexto em outra. Não confundir com "resumo".
+<span class="text-neutral-500">_Avoid_: "summary", "transferência", "wrap-up doc"</span>
+
+<span class="text-yellow-400">**flagged ambiguity**</span>: termo ou comportamento ainda não
+definido que aparece &gt;2x em conversas — candidato a virar entrada aqui.
+<span class="text-neutral-500">_Avoid_: "TODO", "open question"</span>
+
+<span class="text-emerald-400">## Decisions</span>
+- Ver pasta <span class="text-sky-400">/adrs</span> para decisões arquiteturais.
+- Mudanças em <span class="text-yellow-400">Language</span> exigem ADR se afetam código.</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">Required sections</h4>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>Language</strong> — domain terms</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>Decisions</strong> — pointer to the ADRs</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span>Header with the project name</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">Optional sections (use when useful)</h4>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>Constraints</strong> — technical/regulatory constraints</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>Conventions</strong> — style, file names</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">•</span><span><strong>Flagged Ambiguities</strong> — things to resolve</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">📐</span> The “term + Avoid” pattern
+        </h3>
+<p class="text-neutral-300 mb-2">
+          Each entry of <strong>Language</strong> has 2 parts: the positive definition and the list of
+          synonyms to avoid. Why? Because without this, everyone (human and agent) reintroduces the synonym
+          in 2 weeks.
+        </p>
+<p class="text-neutral-300">
+          O <em>Avoid</em> is what prevents entropy. It's the rule the agent cites when you write "refresh"
+          in a PR and it responds, "did you mean materialization cascade?".
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Location</div>
+<div class="text-neutral-300 text-sm">Repo root</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Format</div>
+<div class="text-neutral-300 text-sm">Simple Markdown</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Ideal size</div>
+<div class="text-neutral-300 text-sm">200-500 lines</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Update</div>
+<div class="text-neutral-300 text-sm">With every feature</div>
+</div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🏛️ ADRs (Architecture Decision Records)</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        One <strong class="text-emerald-400">ADR</strong> is a short document that records <em>a</em> architectural decision: what was decided, in what context, and what the consequences are. Coined by Michael Nygard in 2011. The winning format is minimalist—4 sections, 1 page.
+      </p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center">
+<span class="mr-2">🧱</span> Canonical structure of an ADR
+        </h3>
+<ul class="space-y-3 text-neutral-300">
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">1.</span>
+<span><strong class="text-white">Status</strong> — proposed / accepted / deprecated / superseded by ADR-NNN</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">2.</span>
+<span><strong class="text-white">Context</strong> — what was the situation? What problem were we trying to solve?</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">3.</span>
+<span><strong class="text-white">Decision</strong> — what we decide to do (active voice, present tense).</span>
+</li>
+<li class="flex items-start space-x-2">
+<span class="text-emerald-400 mt-1">4.</span>
+<span><strong class="text-white">Consequences</strong> — assumed trade-offs, what got worse, what got better.</span>
+</li>
+</ul>
+</div>
+<h3 class="text-xl font-bold mb-4">Example: ADR-007 — Postgres instead of Mongo</h3>
+<div class="code-box bg-dark-900 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+<pre class="text-sm leading-relaxed"><span class="text-emerald-400"># ADR-007: Usar Postgres em vez de Mongo para o catálogo de produtos</span>
+
+<span class="text-yellow-400">## Status</span>
+Accepted — 2025-11-12
+
+<span class="text-yellow-400">## Context</span>
+O catálogo cresceu pra ~2M de itens com relações fortes
+(SKU ↔ variantes ↔ preços regionais ↔ promoções). Mongo nos
+forçou a duplicar dados pra evitar joins manuais, e a
+<span class="text-emerald-400">materialization cascade</span> ficou frágil. Precisamos de
+JOINs nativos, transações ACID e queries analíticas ad-hoc.
+
+<span class="text-yellow-400">## Decision</span>
+Migrar o catálogo para Postgres 16. Mantemos Mongo apenas
+para <span class="text-emerald-400">session blobs</span> (efêmeros, schema-less).
+
+<span class="text-yellow-400">## Consequences</span>
++ JOINs e CTEs viáveis; analytics direto no DB.
++ <span class="text-emerald-400">materialization cascade</span> vira VIEW materializada
+  (uma única fonte da verdade).
+- Migração custa ~3 semanas + 1 freeze de 4h.
+- Time precisa subir nível em índices Postgres.
+- 2 bancos em produção (overhead operacional).</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Tip: An ADR is frozen, not edited
+        </h3>
+<p class="text-neutral-300">
+          ADRs are <strong>immutable</strong> after they're accepted. Changed your mind? Create a new ADR with status
+          "supersedes ADR-007". This preserves the history—in 6 months, when someone asks "why
+          did we choose Postgres?", the original answer is still intact, along with the rationale for the change.
+        </p>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🔥 Real example: materialization cascade</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        How a team discovered a bug, gave the concept a name, and watched the name spread from CONTEXT.md
+        to production code in 2 weeks. A real, anonymized story.
+      </p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">1</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Day 0 — production bug</h4>
+<p class="text-sm text-neutral-400 mb-3">Symptom: final price fields became inconsistent after a regional tax change.</p>
+<p class="text-neutral-300 text-sm">Each engineer described the bug with different words: “cascade,” “recalc bug,” “chain refresh issue.” No agent could help—the problem was invisible because it had no name.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">2</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Day 3 — baptism</h4>
+<p class="text-sm text-neutral-400 mb-3">Tech lead opens CONTEXT.md and writes the entry.</p>
+<p class="text-neutral-300 text-sm font-mono bg-dark-900/40 rounded p-3 mb-2">
+<strong>materialization cascade</strong>: sequential recalculation of derived fields after a root field mutation. <em>Avoid</em>: cascade, recalc, refresh.
+            </p>
+<p class="text-neutral-300 text-sm">From that point on, Claude Code starts using the term in its responses. Within 24h, 4 PRs already mention "materialization cascade" in the title.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">3</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Day 7 — renamed code</h4>
+<p class="text-sm text-neutral-400 mb-3">Refactor: <code class="text-emerald-400">refreshPrices()</code> → <code class="text-emerald-400">runMaterializationCascade()</code>.</p>
+<p class="text-neutral-300 text-sm">The function, class, module, Prometheus metric, and log event all started using the same name. Searching for "materialization cascade" in the repo began returning all the relevant places.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">4</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Day 14 — ADR + decision</h4>
+<p class="text-sm text-neutral-400 mb-3">ADR-007 is created: replace the imperative cascade with a materialized VIEW in Postgres.</p>
+<p class="text-neutral-300 text-sm">With CONTEXT.md + ADR as context, the agent proposes the patch in a single conversation. No one has to explain the problem again. The term became a lever.</p>
+</div>
+</div>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">📊</span> Before/after metrics
+        </h3>
+<ul class="space-y-2 text-neutral-300">
+<li><strong class="text-blue-400">Before:</strong> ~14 days per fix iteration, 3 reverted PRs.</li>
+<li><strong class="text-blue-400">After:</strong> 1 PR, merged in 36h, zero rollbacks.</li>
+<li><strong class="text-blue-400">Tokens in prompts:</strong> ~70% drop in conversations about the pricing system.</li>
+</ul>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🔄 Continuous maintenance</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Ubiquitous language isn't a one-time act — it's a practice. Without maintenance, CONTEXT.md becomes a fossil in 3
+        months: outdated terms, definitions inconsistent with the code, synonyms coming back to life. The
+        healthy cycle has 4 beats:
+      </p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">1</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Each new feature → revisit CONTEXT.md</h4>
+<p class="text-neutral-300 text-sm">Before coding, ask: "Does this feature introduce a new term? Does an existing term change meaning?" If so, update it BEFORE coding.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">2</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Flagged ambiguities → revisit weekly</h4>
+<p class="text-neutral-300 text-sm">The "Flagged Ambiguities" section lists terms that appeared &gt;2x without a clear definition. Once a week, someone promotes the most-used ones to formal entries.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">3</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Important decision → new ADR</h4>
+<p class="text-neutral-300 text-sm">Whenever a change alters trade-offs or supersedes an earlier decision, create an ADR. Mark the old one as "superseded by ADR-NNN" — never delete it.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">4</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">The language evolves—you document the evolution</h4>
+<p class="text-neutral-300 text-sm">Retired term? Mark it “deprecated, replaced by X.” Refined term? Update the definition with a date. CONTEXT.md is also the project’s semantic history.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Keep it alive</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Update alongside each relevant PR</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Review Flagged Ambiguities every Friday</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cite the term in commits ("fix: materialization cascade reorder")</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Link ADRs in the PR description when applicable</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Let it rot</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Create it and never open it again</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Accept synonyms in PRs without challenging them</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Editing old ADRs instead of creating new ones</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Let Flagged Ambiguities grow indefinitely</span></li>
+</ul>
+</div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">📈 Measurable benefits</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Ubiquitous language isn't aesthetics — it's an operational lever. The 4 benefits seen in teams that
+        adopt CONTEXT.md + ADRs in practice:
+      </p>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-4 flex items-center">
+<span class="mr-2">🎯</span> The 4 concrete benefits
+        </h3>
+<ul class="space-y-4 text-neutral-300">
+<li class="flex items-start space-x-3">
+<span class="text-primary font-bold text-lg">1.</span>
+<div>
+<strong class="text-white">Consistent names across the entire stack.</strong>
+              Function, class, log, metric, dashboard, ticket, and PR all use the same word. Search = find.
+            </div>
+</li>
+<li class="flex items-start space-x-3">
+<span class="text-primary font-bold text-lg">2.</span>
+<div>
+<strong class="text-white">Code navigable by non-experts.</strong>
+              A product manager reads the method’s name and understands the domain. Onboarding drops from weeks to days.
+            </div>
+</li>
+<li class="flex items-start space-x-3">
+<span class="text-primary font-bold text-lg">3.</span>
+<div>
+<strong class="text-white">Fewer tokens in thinking.</strong>
+              The agent doesn’t need to “infer what you meant.” It reduces long prompts and eliminates clarification turns. In dense projects, consumption drops by 40-70%.
+            </div>
+</li>
+<li class="flex items-start space-x-3">
+<span class="text-primary font-bold text-lg">4.</span>
+<div>
+<strong class="text-white">Human-agent alignment.</strong>
+              Claude Code and the engineer use the same vocabulary. A pull request becomes a dialogue on
+              equal footing, not a translation.
+            </div>
+</li>
+</ul>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Searches</div>
+<div class="text-neutral-300 text-sm">+90% grep/IDE accuracy</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Onboarding</div>
+<div class="text-neutral-300 text-sm">2 weeks → 3 days</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Tokens</div>
+<div class="text-neutral-300 text-sm">-40 a -70%</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
+<div class="text-emerald-400 font-bold text-sm mb-1">Iterations</div>
+<div class="text-neutral-300 text-sm">-50% rework</div>
+</div>
+</div>
+</section>
+<!-- SECAO 7 -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">🛠️ Practical exercise</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Time to get started. The exercise has 3 steps and takes ~15 minutes. Do it NOW, before moving on to module 1.4.
+      </p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center">
+<span class="mr-2">🎯</span> Step by step
+        </h3>
+<ol class="space-y-4 text-neutral-300">
+<li class="flex items-start space-x-3">
+<span class="text-emerald-400 font-bold">1.</span>
+<div>
+<strong class="text-white">Create the file</strong>
+<p class="text-sm mt-1">At the root of the current project (any project—it can be personal), create <code class="text-emerald-400 bg-dark-900/40 px-1 rounded">CONTEXT.md</code> with the Section 2 template.</p>
+</div>
+</li>
+<li class="flex items-start space-x-3">
+<span class="text-emerald-400 font-bold">2.</span>
+<div>
+<strong class="text-white">Define 3 terms from your domain</strong>
+<p class="text-sm mt-1">Think of recent conversations where you had to explain the same thing more than once. Those are obvious candidates. For each term, write:
+                definition (1 sentence) + <em>Avoid</em> (the synonyms you want to eliminate).</p>
+</div>
+</li>
+<li class="flex items-start space-x-3">
+<span class="text-emerald-400 font-bold">3.</span>
+<div>
+<strong class="text-white">Run <code class="text-emerald-400 bg-dark-900/40 px-1 rounded">/grill-with-docs</code></strong>
+<p class="text-sm mt-1">In Claude Code, run the command with a plan or idea in mind. The grill will use your CONTEXT.md as a reference and challenge inconsistencies. Notice how often it mentions your terms.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Tip: start small, improve weekly
+        </h3>
+<p class="text-neutral-300">
+          Don't try to list 50 terms on the first day — that's a recipe for abandoning the file. Start with 3,
+          use it for 1 week, add 2-3 new ones. In 1 month, you'll have a living, useful glossary instead of
+          a dead document.
+        </p>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">✅</span> Exercise checklist
+        </h3>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-blue-400">☐</span><span>CONTEXT.md created at the root</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">☐</span><span>3 terms with definitions + Avoid</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">☐</span><span><code class="text-blue-400">/grill-with-docs</code> run at least once</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">☐</span><span>Did you notice a difference in the agent’s response?</span></li>
+</ul>
+</div>
+</section>
+<!-- SECAO 8 - RESUMO -->
+<section class="mb-12" id="topico-8">
+<div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center">
+<span class="mr-3">📝</span> Summary + Next Steps
+        </h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Ubiquitous language = 1 concept, 1 name</strong>
+<span class="text-neutral-400"> — Eric Evans’s DDD heritage, vital with agents.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">CONTEXT.md is the home of the language</strong>
+<span class="text-neutral-400"> — Language + Decisions sections, in the "term + Avoid" format.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">ADRs record architectural decisions</strong>
+<span class="text-neutral-400"> — Status / Context / Decision / Consequences, immutable.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Maintenance is weekly, not annual</strong>
+<span class="text-neutral-400"> — revisit Flagged Ambiguities, update alongside each feature.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-emerald-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Measurable gain</strong>
+<span class="text-neutral-400"> — fewer tokens, faster onboarding, human-agent alignment.</span>
+</div>
+</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-emerald-400 mb-2">Next Module:</h3>
+<p class="text-neutral-300">1.4 — Skills, sub-agents, and the Claude Code ecosystem</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">
+            ← Back to Track
+          </a>
+<a class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors" href="modulo-1-4.html">
+            Next Module →
+          </a>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="border-t border-dark-600 py-8 mt-16">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Skills Course - 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'light') {
+      html.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

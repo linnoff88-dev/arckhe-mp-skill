@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 3.3 — Integration with Other Agents | Skills For Real Engineers</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    /* Light mode overrides - OBRIGATORIO */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (trilha purple) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .bg-purple-900\/20 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .bg-purple-900\/30 { background-color: rgba(124, 58, 237, 0.10); }
+    html:not(.dark) .bg-purple-900\/40 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124, 58, 237, 0.18); }
+    html:not(.dark) .bg-purple-600 { background-color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500:hover { background-color: #8b5cf6; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+
+    /* Light mode - emerald (Fazer) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+
+    /* Light mode - red (Evitar) */
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185, 28, 28, 0.08); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185, 28, 28, 0.25); }
+
+    /* Light mode - blue (dados) */
+    html:not(.dark) .text-blue-400 { color: #1d4ed8; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(29, 78, 216, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(29, 78, 216, 0.25); }
+
+    /* Light mode - hover trilhas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+
+    /* Light mode - remove gradientes */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+
+    /* Light mode - cores especiais */
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+
+    /* Light mode - nav */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    /* Dark mode - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* Code box */
+    .code-box { font-family: 'Menlo', 'Monaco', 'Courier New', monospace; }
+  </style>
+<link href="https://inematds.github.io/mp-skill/curso-skills/curso/trilha3/modulo-3-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/en/curso/trilha3/modulo-3-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/mp-skill/curso-skills/es/curso/trilha3/modulo-3-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha3/modulo-3-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-3-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../es/curso/trilha3/modulo-3-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🛠️</span>
+<span class="font-bold text-lg hidden sm:inline">Skills For Real Engineers</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html">
+<span class="sm:hidden">T1</span>
+<span class="hidden sm:inline">Fundamentals</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html">
+<span class="sm:hidden">T2</span>
+<span class="hidden sm:inline">About the Repo</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10" href="index.html">
+<span class="sm:hidden">T3</span>
+<span class="hidden sm:inline">Advanced</span>
+</a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20">
+<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+</svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-purple-400" href="../../index.html">Start</a>
+<span>/</span>
+<a class="hover:text-purple-400" href="index.html">Track 3 — Advanced</a>
+<span>/</span>
+<span class="text-purple-400">Module 3.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">
+        MODULE 3.3 — COURSE FINAL
+      </span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🔌 Module 3.3 — Integration with other agents</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">
+<strong class="text-purple-400">Claude Code, Codex, Cursor—one skill for all.</strong> How to write portable skills, run them in CI/CD, expose them via MCP, and integrate with other agents. The final module of the course.
+      </p>
+<!-- Stats Banner -->
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-purple-400">10</div>
+<div class="text-xs text-neutral-400">Sections</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-purple-400">~50</div>
+<div class="text-xs text-neutral-400">Minutes</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-purple-400">Advanced</div>
+<div class="text-xs text-neutral-400">Level</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+<div class="text-xl font-bold text-purple-400">Practice</div>
+<div class="text-xs text-neutral-400">Type</div>
+</div>
+</div>
+</div>
+</header>
+<!-- CONTEÚDO -->
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SEÇÃO 1: Cross-runtime: o problema -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🌐 Cross-runtime: the problem</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        You write a <strong class="text-purple-400">skill</strong> for Claude Code. Works perfectly. Then your colleague uses Codex and asks: "how do I run this here?". Short answer: <em>doesn’t run</em>. Long answer: each agent has its own syntax — frontmatter, tool format, and permission system. Copying and pasting isn't enough.
+      </p>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">💡</span> Tip
+        </h3>
+<p class="text-neutral-300">
+          Skills are <strong>executable documentation</strong>. The logic is the same in any runtime — what changes is the <em>envelope</em>: how the agent loads, activates, and calls tools. Solving the envelope is the job.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Portable format (single source)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Write <strong>once</strong> in a neutral format</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>The build emits versions for each runtime</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>One command propagates the change to everyone</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Tests run against the source, not copies</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Copy-paste between runtimes</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>3 copies diverge in 2 weeks</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Bug fixed in one place, forgotten in the others</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Frontmatter broken by the wrong runtime</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>There's no way to test consistency</span></li>
+</ul>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 2: polyskill — formato portável -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📦 <code class="text-purple-400">polyskill</code> — portable format</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        The skill <code class="text-purple-400">polyskill</code> (present in the repo) solves the envelope problem. You write <strong class="text-purple-400">a single source</strong> and it emits builds specific to each runtime. Think of it as "Babel for skills."
+      </p>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center">
+<span class="mr-2">🗂️</span> Typical structure of a <code>polyskill</code>
+</h3>
+<pre class="code-box bg-dark-900/50 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>minha-skill/
+├── source.md              # fonte única (neutra)
+├── polyskill.config.json  # mapeamento de tools
+├── claude-code/           # build pra Claude Code
+│   └── SKILL.md           # frontmatter + Read/Edit/Bash
+├── codex/                 # build pra Codex
+│   └── skill.yaml         # frontmatter Codex + read_file/write_file
+└── tests/
+    └── snapshot.test.ts   # garante paridade entre builds</code></pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">⚡</span> Automatic translation
+        </h3>
+<p class="text-neutral-300 mb-3">
+          O <code>polyskill</code> creates three essential translators:
+        </p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-primary mt-1">→</span><span><strong>Frontmatter:</strong> <code>name/description/tools</code> mapped to each runtime</span></li>
+<li class="flex items-start space-x-2"><span class="text-primary mt-1">→</span><span><strong>Tools:</strong> <code>Read</code> ↔ <code>read_file</code>, <code>Bash</code> ↔ <code>shell</code></span></li>
+<li class="flex items-start space-x-2"><span class="text-primary mt-1">→</span><span><strong>Activation:</strong> Skill tool (Claude Code) vs activate_skill (Codex)</span></li>
+</ul>
+</div>
+<p class="text-neutral-300 leading-relaxed">
+        Practical advantage: you edit a paragraph in the single source, run <code class="text-purple-400">polyskill build</code> and both builds come out consistent. A production bug is a <code>git diff</code>, not a <em>"which copy did I fix this in again?"</em>.
+      </p>
+</section>
+<!-- SEÇÃO 3: Diferenças entre Claude Code e Codex -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🔀 Differences between Claude Code and Codex</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Before porting a skill, it's worth understanding <strong>where</strong> the two differ. Spoiler: on the surface they’re the same (Markdown + frontmatter); in the details, they’re quite different.
+      </p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<table class="w-full text-sm">
+<thead class="bg-dark-700">
+<tr>
+<th class="text-left p-4 text-purple-400 font-semibold">Dimension</th>
+<th class="text-left p-4 text-purple-400 font-semibold">Claude Code</th>
+<th class="text-left p-4 text-purple-400 font-semibold">Codex</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-dark-600">
+<tr>
+<td class="p-4 font-medium text-neutral-100">File tools</td>
+<td class="p-4 text-neutral-300"><code>Read</code>, <code>Edit</code>, <code>Write</code></td>
+<td class="p-4 text-neutral-300"><code>read_file</code>, <code>write_file</code>, <code>apply_patch</code></td>
+</tr>
+<tr>
+<td class="p-4 font-medium text-neutral-100">Shell execution</td>
+<td class="p-4 text-neutral-300"><code>Bash</code> with a permission-based sandbox</td>
+<td class="p-4 text-neutral-300"><code>shell</code> with workspace-write/read</td>
+</tr>
+<tr>
+<td class="p-4 font-medium text-neutral-100">Skill loading</td>
+<td class="p-4 text-neutral-300">Skill tool (<code>/skill-name</code>) + description triggers automatically</td>
+<td class="p-4 text-neutral-300"><code>activate_skill</code> explicit or prompt-triggered</td>
+</tr>
+<tr>
+<td class="p-4 font-medium text-neutral-100">Permissions</td>
+<td class="p-4 text-neutral-300">Allowlist in <code>settings.json</code>, prompt per tool</td>
+<td class="p-4 text-neutral-300">Modes (suggest / auto-edit / full-auto)</td>
+</tr>
+<tr>
+<td class="p-4 font-medium text-neutral-100">MCP support</td>
+<td class="p-4 text-neutral-300">Built in, configured in <code>~/.claude/mcp.json</code></td>
+<td class="p-4 text-neutral-300">Recent support, still evolving</td>
+</tr>
+<tr>
+<td class="p-4 font-medium text-neutral-100">Subagents</td>
+<td class="p-4 text-neutral-300">Yes (Task tool, parallel agents)</td>
+<td class="p-4 text-neutral-300">Limited — one session at a time</td>
+</tr>
+<tr>
+<td class="p-4 font-medium text-neutral-100">Slash commands</td>
+<td class="p-4 text-neutral-300">Yes, <code>~/.claude/commands/</code></td>
+<td class="p-4 text-neutral-300">Yes, but a different format</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="text-neutral-300 leading-relaxed">
+        The practical rule: if your skill <strong>only reads files and writes markdown</strong>, it’s trivially portable. If it <strong>orchestrates parallel subagents with hooks</strong>, will need serious adaptation — it will probably become two skills.
+      </p>
+</section>
+<!-- SEÇÃO 4: Chamando skills via MCP -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🔗 Calling skills via MCP</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Instead of asking the other agent to understand your skill format, <strong class="text-purple-400">wrap the skill in an MCP server</strong>. Any MCP client (Claude Code, Codex, Cursor, Cline) can call it as a tool without knowing there's a skill behind it.
+      </p>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center">
+<span class="mr-2">🛠️</span> Snippet: skill as an MCP endpoint
+        </h3>
+<pre class="code-box bg-dark-900/50 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>// mcp-skills-server/index.ts
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { readFileSync } from "fs";
+
+const server = new Server({ name: "skills-bridge", version: "0.1.0" });
+
+server.tool({
+  name: "grill-me",
+  description: "Stress-test a plan adversarially. Returns gaps and risks.",
+  inputSchema: {
+    type: "object",
+    properties: { plan: { type: "string" } },
+    required: ["plan"]
+  },
+  handler: async ({ plan }) =&gt; {
+    const skillBody = readFileSync("./skills/grill-me/SKILL.md", "utf8");
+    return runAgentLoop({ system: skillBody, user: plan });
+  }
+});
+
+server.start();</code></pre>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Use case: <strong>skills as an API</strong>. Your skill <code class="text-purple-400">/grill-me</code> becomes an endpoint that any agent — or even your CI — can call via HTTP/MCP. Centralizes the logic and avoids duplication.
+      </p>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">📊</span> When to use MCP vs. polyskill
+        </h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong>polyskill:</strong> the skill is mainly <em>documentation</em> — guides the model; it doesn’t run heavy logic</li>
+<li><strong>MCP server:</strong> the skill calls external APIs, maintains state, or has code you don't want to duplicate</li>
+<li><strong>Hybrid:</strong> polyskill emits the documentation, the MCP server exposes the specialized tools</li>
+</ul>
+</div>
+</section>
+<!-- SEÇÃO 5: Skills em CI/CD -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🤖 Skills in CI/CD</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Skills don’t need to be interactive. In CI/CD, you run them in <strong>batch</strong> (non-interactive, with fixed input and output to a file). Useful for automatic PR reviews, docs generation, and migration validation.
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Works in CI</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Skills <strong>deterministic</strong> with well-defined input</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>File output (markdown, JSON)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Restricted tools (Read + Write, no unrestricted Bash)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Timeout configured, with a fallback in case of errors</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Doesn't work in CI</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Skills that <strong>ask the user</strong> (clarifications)</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Skills that depend on local session state</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Skills with interactive TUIs or prompts</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Skills that take &gt; 10min (runner timeout)</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">⚠️</span> Important Tip
+        </h3>
+<p class="text-neutral-300">
+          Before running a skill in CI, test with <code>--non-interactive</code> locally. If it asks for input at any point, it <strong>will freeze</strong> in the runner — and GitHub Actions bills you for the 6h until timeout.
+        </p>
+</div>
+</section>
+<!-- SEÇÃO 6: Exemplo prático — /tdd em GitHub Actions -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🧪 Practical example: <code class="text-purple-400">/tdd</code> in GitHub Actions</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Concrete scenario: <strong>when a PR breaks tests, automatically trigger the /tdd skill</strong>. It analyzes the error, proposes a fix, and opens a commit in the PR itself. The developer wakes up the next day to a green build.
+      </p>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center">
+<span class="mr-2">📄</span> <code>.github/workflows/tdd-loop.yml</code>
+</h3>
+<pre class="code-box bg-dark-900/50 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>name: tdd-loop
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  run-tdd:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run tests (capture failure)
+        id: tests
+        run: npm test || echo "failed=true" &gt;&gt; $GITHUB_OUTPUT
+
+      - name: Run /tdd skill
+        if: steps.tests.outputs.failed == 'true'
+        uses: anthropics/claude-action@v1
+        with:
+          skill: tdd
+          input: "fix failing tests in this PR"
+          allowed-tools: "Read,Edit,Bash(npm test)"
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit fix
+        if: steps.tests.outputs.failed == 'true'
+        run: |
+          git config user.name "tdd-bot"
+          git config user.email "bot@example.com"
+          git add -A
+          git commit -m "fix: /tdd auto-repair" || exit 0
+          git push</code></pre>
+</div>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">1</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Trigger in the PR</h4>
+<p class="text-sm text-neutral-400 mb-3">Run on each <code>opened</code> e <code>synchronize</code> (new commits)</p>
+<p class="text-neutral-300 text-sm">We capture the flow from the start—we don’t wait for the developer to ask for help.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">2</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Run tests and detect failures</h4>
+<p class="text-sm text-neutral-400 mb-3">Output <code>failed=true</code> serves as a condition for the next steps</p>
+<p class="text-neutral-300 text-sm">Only activates the skill if something actually broke — doesn't waste API quota.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">3</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Invoke /tdd with restricted tools</h4>
+<p class="text-sm text-neutral-400 mb-3"><code>allowed-tools</code> limits it to Read, Edit, and Bash(npm test) — nothing else <code>rm</code> or <code>curl</code></p>
+<p class="text-neutral-300 text-sm">The allowlist is the seat belt. Without it, the skill would have too much power in an environment without human review.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">4</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Commit + push back to the PR</h4>
+<p class="text-sm text-neutral-400 mb-3">The fix becomes part of the PR history, attributed to the bot</p>
+<p class="text-neutral-300 text-sm">The developer reviews the human’s diff and the bot’s—not a phantom patch without context.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 7: Integração com Cursor, Aider, Continue -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">🧩 Integration with Cursor, Aider, Continue</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Cursor, Aider and Continue <strong>don’t have</strong> the native skill concept. They have <em>rules</em>, <em>conventions</em> or <em>system prompts</em>. The good news: a skill’s content fits these formats perfectly.
+      </p>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">📐</span> Current portability status
+        </h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong>Cursor:</strong> files <code>.cursorrules</code> accept Markdown directly from the skill (no frontmatter)</li>
+<li><strong>Aider:</strong> uses <code>CONVENTIONS.md</code> or <code>--read</code> to load context</li>
+<li><strong>Continue:</strong> <code>config.json</code> allows <code>systemMessage</code> with the skill body</li>
+<li><strong>Cline / Roo Code:</strong> accepted <code>.clinerules</code> in markdown</li>
+</ul>
+</div>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center">
+<span class="mr-2">🔄</span> Generic adapter — emits for any agent
+        </h3>
+<pre class="code-box bg-dark-900/50 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>// scripts/sync-skills.ts
+import { readFileSync, writeFileSync } from "fs";
+import { stripFrontmatter } from "./utils";
+
+const skill = readFileSync("./skills/tdd/SKILL.md", "utf8");
+const body = stripFrontmatter(skill);
+
+// Cursor
+writeFileSync(".cursorrules", body);
+
+// Aider
+writeFileSync("CONVENTIONS.md", body);
+
+// Continue
+const config = JSON.parse(readFileSync(".continue/config.json", "utf8"));
+config.systemMessage = body;
+writeFileSync(".continue/config.json", JSON.stringify(config, null, 2));
+
+console.log("✓ skill syncronized to Cursor / Aider / Continue");</code></pre>
+</div>
+<p class="text-neutral-300 leading-relaxed">
+        Limitation: agents <em>without</em> The skill concept loads the content all the time (with no dynamic activation). For short skills, that’s fine. For long skills, consider breaking them into smaller rules specific to each context.
+      </p>
+</section>
+<!-- SEÇÃO 8: Skills + MCP servers -->
+<section class="mb-16" id="topico-8">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">8</span>
+<h2 class="text-2xl font-bold">🎼 Skills + MCP servers</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        The most powerful combination today: <strong class="text-purple-400">the skill orchestrates; the MCP server executes</strong>. The skill guides the model through the <em>when</em> e <em>how</em>; the MCP server provides specialized tools (DB, GitHub, Figma, Slack).
+      </p>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center">
+<span class="mr-2">🏗️</span> Composition architecture
+        </h3>
+<pre class="code-box bg-dark-900/50 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>┌──────────────────────────────────────────────────────────┐
+│                      USUÁRIO                              │
+│                  "/release-notes v2.3"                    │
+└────────────────────────┬─────────────────────────────────┘
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────┐
+│          SKILL: /release-notes (markdown + frontmatter)   │
+│   "Quando o user pedir release notes:                     │
+│    1. liste commits desde a última tag                    │
+│    2. agrupe por tipo (feat/fix/chore)                    │
+│    3. publique no Slack #releases"                        │
+└──────┬───────────────────┬───────────────────┬───────────┘
+       │                   │                   │
+       ▼                   ▼                   ▼
+┌──────────────┐   ┌───────────────┐   ┌──────────────┐
+│ MCP: github  │   │ MCP: linear   │   │ MCP: slack   │
+│ list-commits │   │ get-issues    │   │ post-message │
+└──────────────┘   └───────────────┘   └──────────────┘</code></pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
+<span class="mr-2">🎯</span> Design principle
+        </h3>
+<p class="text-neutral-300 mb-3">
+          The skill is the <strong>script</strong>; MCP is the <strong>toolbox</strong>. A roadmap without a box is theory; a box without a roadmap is chaos.
+        </p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">→</span><span>Skill describes <strong>when</strong> use each MCP tool</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">→</span><span>MCP server exposes <strong>what</strong> what each tool does and its schema</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">→</span><span>Model ties the two together in the <strong>how</strong> of the execution</span></li>
+</ul>
+</div>
+</section>
+<!-- SEÇÃO 9: Limitações atuais -->
+<section class="mb-16" id="topico-9">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">9</span>
+<h2 class="text-2xl font-bold">🚧 Current limitations</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        Cross-runtime is a <strong>work in progress</strong>. Some things already work well; others still depend on workarounds. An honest map of the landscape:
+      </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Works well cross-runtime</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Declarative skills (no code)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Basic tools: read, write, execute</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>MCP servers (open standard)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Short skills (&lt; 200 lines)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Sync via polyskill / adapters</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Not yet / with caveats</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Parallel subagents (Claude Code only)</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Hooks (PreToolUse, PostToolUse): specific</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Slash commands with complex arguments</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Permission models differ considerably</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Skills that use <em>experimental features</em> of a runtime</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">🗺️</span> Roadmap (actual status, not promises)
+        </h3>
+<p class="text-neutral-300 mb-3">
+          Matt mentioned in the repo that the goal is for <em>"every course skill should run in at least Claude Code and Codex"</em>. Today (2026), this applies to the 80% of simpler cases. Skills that depend on parallel subagents or heavy hooks are still runtime-specific.
+        </p>
+<p class="text-neutral-300">
+          Trend: standardization will come from MCP, not a universal skill format. If your skill is mainly a <em>system prompt + tools</em>, it’s already portable today.
+        </p>
+</div>
+</section>
+<!-- SEÇÃO 10: Conclusão do curso -->
+<section class="mb-16" id="topico-10">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">10</span>
+<h2 class="text-2xl font-bold">🎓 Course completion</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">
+        You’ve reached the end. A recap of the three tracks, one paragraph each—to reinforce the path you took.
+      </p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
+<span class="text-emerald-400 font-bold">T1</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Track 1 — Fundamentals: the 4 problems</h4>
+<p class="text-sm text-neutral-400 mb-3">Why skills exist and what they solve</p>
+<p class="text-neutral-300 text-sm">We showed the 4 problems that skills solve: repeated context, vague prompts, lack of a repeatable process, and no memory between sessions. From there, choosing a skill became a rational decision, not an aesthetic one.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">T2</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Track 2 — About the Repo: structure and installation</h4>
+<p class="text-sm text-neutral-400 mb-3">How Matt Pocock's repository is organized and how to install it</p>
+<p class="text-neutral-300 text-sm">We walk through the structure <code>skills/</code>, <code>productivity/</code>, <code>engineering/</code>, <code>misc/</code>, and we installed it via the Claude Code plugin. After that, every new skill finds its place without you having to ask.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+<span class="text-purple-400 font-bold">T3</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Track 3 — Advanced: composition, customization, integration</h4>
+<p class="text-sm text-neutral-400 mb-3">How to go beyond the basics</p>
+<p class="text-neutral-300 text-sm">We compose skills with one another, customize them for the project's local context, and integrate with other agents via MCP and CI/CD. Now you don't <em>uses</em> skills — you <em>builds</em> with them.</p>
+</div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center">
+<span class="mr-2">🚀</span> Next steps
+        </h3>
+<p class="text-neutral-300 mb-3">
+          Theory without practice turns to dust. <strong>Next concrete step:</strong> choose a real project of yours within the next 48h and install 3 skills. Use them for a full week. Note what saves time and what fails.
+        </p>
+<p class="text-neutral-300 mb-3">After that, three paths:</p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-primary mt-1">1.</span><span><strong>Customize:</strong> adjust the frontmatter, edit the body, make your own</span></li>
+<li class="flex items-start space-x-2"><span class="text-primary mt-1">2.</span><span><strong>Compose:</strong> chain skills (e.g., <code>/grill-me</code> + <code>/tdd</code>)</span></li>
+<li class="flex items-start space-x-2"><span class="text-primary mt-1">3.</span><span><strong>Port:</strong> use <code>polyskill</code> and bring your skills to Codex / Cursor</span></li>
+</ul>
+</div>
+<div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8 mb-6">
+<h2 class="text-2xl font-bold mb-6 flex items-center">
+<span class="mr-3">🎯</span> What you’ll know by the end
+        </h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Recognizing when a skill solves a problem</strong>
+<span class="text-neutral-400"> — instead of writing a long prompt from scratch every time</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Install, customize, and version skills</strong>
+<span class="text-neutral-400"> — local, global, per project</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Compose skills</strong>
+<span class="text-neutral-400"> — chaining /grill-me, /tdd, /handoff, etc.</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Port skills between agents</strong>
+<span class="text-neutral-400"> — Claude Code, Codex, Cursor via polyskill / MCP</span>
+</div>
+</div>
+<div class="flex items-start space-x-3">
+<span class="text-purple-400 mt-1">✓</span>
+<div>
+<strong class="text-white">Run skills in CI/CD</strong>
+<span class="text-neutral-400"> — real automation, not just a demo</span>
+</div>
+</div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-6">
+<h3 class="font-semibold text-purple-400 mb-2">Keep learning:</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li>📬 Matt Pocock’s newsletter: <a class="text-sky-400 hover:text-sky-300" href="https://www.aihero.dev/s/skills-newsletter" target="_blank">aihero.dev/s/skills-newsletter</a></li>
+<li>📦 Course repository: <a class="text-sky-400 hover:text-sky-300" href="https://github.com/inematds/mp-skill" target="_blank">github.com/inematds/mp-skill</a></li>
+<li>🌐 INEMA.CLUB — Brazilian community: <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">inema.club</a></li>
+</ul>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-3-2.html">
+            ← Previous module (3.2)
+          </a>
+<a class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors" href="../../index.html">
+            Back to the landing page 🏁
+          </a>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="border-t border-dark-600 py-8 mt-16">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Skills For Real Engineers — 2026</p>
+</div>
+</footer>
+<!-- SCRIPTS -->
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'light') {
+      html.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+    } else {
+      html.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
