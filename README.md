@@ -1,8 +1,8 @@
-﻿<p align="center">
-  <img alt="MP SKILL â€” Skills para agentes de IA" src="assets/readme-hero.png" />
+ï»¿<p align="center">
+  <img alt="MP SKILL ê¢â¬â Skills para agentes de IA" src="assets/readme-hero.png" />
 </p>
 
-# mp-skill â€” Skills para Agentes de IA (PT-BR)
+# mp-skill ê¢â¬â Skills para Agentes de IA (PT-BR)
 
 <div align="center">
   <img src="capa/logo.svg" alt="Arckhé AI" height="48" />
@@ -10,65 +10,65 @@
 </div>
 
 
-Fork em portuguÃªs do repositÃ³rio **[mattpocock/skills](https://github.com/mattpocock/skills)** â€” uma coleÃ§Ã£o de skills (slash commands e behaviors) para Claude Code, Codex e outros agentes â€” com traduÃ§Ã£o PT-BR e um **curso completo** sobre como usar tudo isso na prÃ¡tica.
+Fork em portuguêÂªs do repositêÂ³rio **[mattpocock/skills](https://github.com/mattpocock/skills)** ê¢â¬â uma coleêÂ§êÂ£o de skills (slash commands e behaviors) para Claude Code, Codex e outros agentes ê¢â¬â com traduêÂ§êÂ£o PT-BR e um **curso completo** sobre como usar tudo isso na prêÂ¡tica.
 
-> _"NÃ£o Ã© sobre 'promptar melhor'. Ã‰ sobre construir sistemas reutilizÃ¡veis de raciocÃ­nio."_
+> _"NêÂ£o êÂ© sobre 'promptar melhor'. êâ° sobre construir sistemas reutilizêÂ¡veis de raciocêÂ­nio."_
 
 ---
 
-## ðŸŽ“ Curso: Skills For Real Engineers (PT-BR)
+## ê°Å¸Å½â Curso: Skills For Real Engineers (PT-BR)
 
-Curso completo em portuguÃªs explicando os fundamentos, a estrutura do repositÃ³rio e o uso avanÃ§ado das skills. **14 pÃ¡ginas HTML** divididas em 3 trilhas:
+Curso completo em portuguêÂªs explicando os fundamentos, a estrutura do repositêÂ³rio e o uso avanêÂ§ado das skills. **14 pêÂ¡ginas HTML** divididas em 3 trilhas:
 
-| Trilha | Cor | ConteÃºdo |
+| Trilha | Cor | ConteêÂºdo |
 |--------|-----|----------|
-| **T1 â€” Fundamentos** ðŸŒ± | Emerald | Os 4 problemas que skills resolvem (desalinhamento, verbosidade, cÃ³digo quebrado, ball of mud). 6 mÃ³dulos sobre grilling, linguagem ubÃ­qua, TDD+diagnose, arquitetura e workflow completo. |
-| **T2 â€” Sobre o RepositÃ³rio** ðŸ“¦ | Blue | Origem do projeto, filosofia, estrutura de pastas e instalaÃ§Ã£o. 3 mÃ³dulos. |
-| **T3 â€” Uso AvanÃ§ado** ðŸ§© | Purple | ComposiÃ§Ã£o de skills, customizaÃ§Ã£o e integraÃ§Ã£o cross-runtime (Claude Code, Codex, MCP, CI/CD). 3 mÃ³dulos. |
+| **T1 ê¢â¬â Fundamentos** ê°Å¸ÅÂ± | Emerald | Os 4 problemas que skills resolvem (desalinhamento, verbosidade, cêÂ³digo quebrado, ball of mud). 6 mêÂ³dulos sobre grilling, linguagem ubêÂ­qua, TDD+diagnose, arquitetura e workflow completo. |
+| **T2 ê¢â¬â Sobre o RepositêÂ³rio** ê°Å¸âÂ¦ | Blue | Origem do projeto, filosofia, estrutura de pastas e instalaêÂ§êÂ£o. 3 mêÂ³dulos. |
+| **T3 ê¢â¬â Uso AvanêÂ§ado** ê°Å¸Â§Â© | Purple | ComposiêÂ§êÂ£o de skills, customizaêÂ§êÂ£o e integraêÂ§êÂ£o cross-runtime (Claude Code, Codex, MCP, CI/CD). 3 mêÂ³dulos. |
 
-**ðŸ‘‰ Acesse o curso: [inematds.github.io/mp-skill/curso-skills/](https://inematds.github.io/mp-skill/curso-skills/)**
+**ê°Å¸ââ° Acesse o curso: [inematds.github.io/mp-skill/curso-skills/](https://inematds.github.io/mp-skill/curso-skills/)**
 
 Os arquivos do curso ficam em [`curso-skills/`](./curso-skills/).
 
 ---
 
-## ðŸ“‚ O que tem neste repositÃ³rio
+## ê°Å¸ââ O que tem neste repositêÂ³rio
 
-| Pasta | ConteÃºdo |
+| Pasta | ConteêÂºdo |
 |-------|----------|
-| **[`skills/`](./skills/)** | As skills propriamente ditas, organizadas em buckets: `engineering/` (10 skills de cÃ³digo diÃ¡rio), `productivity/` (workflow nÃ£o-cÃ³digo), `misc/` (uso raro), `personal/`, `in-progress/`, `deprecated/`. |
-| **[`curso-skills/`](./curso-skills/)** | Curso PT-BR em HTML estÃ¡tico no formato INEMA.CLUB â€” landing + 3 trilhas + 12 mÃ³dulos. |
-| **[`docs/pt-BR/`](./docs/pt-BR/)** | TraduÃ§Ã£o PT-BR do README, do CONTEXT.md e Ã­ndice de todas as skills. |
-| **[`CONTEXT.md`](./CONTEXT.md)** | Linguagem ubÃ­qua do repo â€” termos canÃ´nicos (Issue tracker, Issue, Triage role). |
-| **[`CLAUDE.md`](./CLAUDE.md)** | ConvenÃ§Ãµes do projeto carregadas automaticamente pelo Claude Code. |
+| **[`skills/`](./skills/)** | As skills propriamente ditas, organizadas em buckets: `engineering/` (10 skills de cêÂ³digo diêÂ¡rio), `productivity/` (workflow nêÂ£o-cêÂ³digo), `misc/` (uso raro), `personal/`, `in-progress/`, `deprecated/`. |
+| **[`curso-skills/`](./curso-skills/)** | Curso PT-BR em HTML estêÂ¡tico no formato INEMA.CLUB ê¢â¬â landing + 3 trilhas + 12 mêÂ³dulos. |
+| **[`docs/pt-BR/`](./docs/pt-BR/)** | TraduêÂ§êÂ£o PT-BR do README, do CONTEXT.md e êÂ­ndice de todas as skills. |
+| **[`CONTEXT.md`](./CONTEXT.md)** | Linguagem ubêÂ­qua do repo ê¢â¬â termos canêÂ´nicos (Issue tracker, Issue, Triage role). |
+| **[`CLAUDE.md`](./CLAUDE.md)** | ConvenêÂ§êÂµes do projeto carregadas automaticamente pelo Claude Code. |
 | **[`.claude-plugin/plugin.json`](./.claude-plugin/plugin.json)** | Manifest do plugin pra Claude Code descobrir as skills. |
 
-### Skills disponÃ­veis (resumo)
+### Skills disponêÂ­veis (resumo)
 
-**Engineering** â€” `diagnose`, `grill-with-docs`, `triage`, `improve-codebase-architecture`, `setup-matt-pocock-skills`, `tdd`, `to-issues`, `to-prd`, `zoom-out`, `prototype`
+**Engineering** ê¢â¬â `diagnose`, `grill-with-docs`, `triage`, `improve-codebase-architecture`, `setup-matt-pocock-skills`, `tdd`, `to-issues`, `to-prd`, `zoom-out`, `prototype`
 
-**Productivity** â€” `grill-me`, `handoff`, e outras de workflow
+**Productivity** ê¢â¬â `grill-me`, `handoff`, e outras de workflow
 
-**Misc** â€” skills mantidas para uso raro
+**Misc** ê¢â¬â skills mantidas para uso raro
 
 Lista completa traduzida em [`docs/pt-BR/skills-pt-BR.md`](./docs/pt-BR/skills-pt-BR.md).
 
 ---
 
-## ðŸš€ InstalaÃ§Ã£o rÃ¡pida
+## ê°Å¸Å¡â¬ InstalaêÂ§êÂ£o rêÂ¡pida
 
 ```bash
 npx skills@latest add mattpocock/skills
 ```
 
-Selecione `/setup-matt-pocock-skills` na lista, depois rode esse comando dentro do seu agente. Detalhes no [MÃ³dulo 2.3 do curso](https://inematds.github.io/mp-skill/curso-skills/curso/trilha2/modulo-2-3.html).
+Selecione `/setup-matt-pocock-skills` na lista, depois rode esse comando dentro do seu agente. Detalhes no [MêÂ³dulo 2.3 do curso](https://inematds.github.io/mp-skill/curso-skills/curso/trilha2/modulo-2-3.html).
 
 ---
 
-## ðŸŒ VersÃµes em outros idiomas
+## ê°Å¸ÅÂ VersêÂµes em outros idiomas
 
-- **ðŸ‡§ðŸ‡· README em PT-BR (estendido):** [`docs/pt-BR/README.pt-BR.md`](./docs/pt-BR/README.pt-BR.md)
-- **ðŸ‡ºðŸ‡¸ README original em inglÃªs:** seguir abaixo â†“
+- **ê°Å¸â¡Â§ê°Å¸â¡Â· README em PT-BR (estendido):** [`docs/pt-BR/README.pt-BR.md`](./docs/pt-BR/README.pt-BR.md)
+- **ê°Å¸â¡Âºê°Å¸â¡Â¸ README original em inglêÂªs:** seguir abaixo ê¢â â
 
 ---
 
@@ -173,7 +173,7 @@ It's hard to explain how powerful this is. It might be the single coolest techni
 
 ### #3: The Code Doesn't Work
 
-> "Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task thatâ€™s too big."
+> "Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task thatê¢â¬â¢s too big."
 >
 > David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
 
@@ -220,34 +220,34 @@ Software engineering fundamentals matter more than ever. These skills are my bes
 
 Skills I use daily for code work.
 
-- **[diagnose](./skills/engineering/diagnose/SKILL.md)** â€” Disciplined diagnosis loop for hard bugs and performance regressions: reproduce â†’ minimise â†’ hypothesise â†’ instrument â†’ fix â†’ regression-test.
-- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** â€” Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.
-- **[triage](./skills/engineering/triage/SKILL.md)** â€” Triage issues through a state machine of triage roles.
-- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** â€” Find deepening opportunities in a codebase, informed by the domain language in `CONTEXT.md` and the decisions in `docs/adr/`.
-- **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)** â€” Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume. Run once per repo before using `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out`.
-- **[tdd](./skills/engineering/tdd/SKILL.md)** â€” Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
-- **[to-issues](./skills/engineering/to-issues/SKILL.md)** â€” Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.
-- **[to-prd](./skills/engineering/to-prd/SKILL.md)** â€” Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview â€” just synthesizes what you've already discussed.
-- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** â€” Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code.
-- **[prototype](./skills/engineering/prototype/SKILL.md)** â€” Build a throwaway prototype to flesh out a design â€” either a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route.
+- **[diagnose](./skills/engineering/diagnose/SKILL.md)** ê¢â¬â Disciplined diagnosis loop for hard bugs and performance regressions: reproduce ê¢â â minimise ê¢â â hypothesise ê¢â â instrument ê¢â â fix ê¢â â regression-test.
+- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** ê¢â¬â Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.
+- **[triage](./skills/engineering/triage/SKILL.md)** ê¢â¬â Triage issues through a state machine of triage roles.
+- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** ê¢â¬â Find deepening opportunities in a codebase, informed by the domain language in `CONTEXT.md` and the decisions in `docs/adr/`.
+- **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)** ê¢â¬â Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume. Run once per repo before using `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out`.
+- **[tdd](./skills/engineering/tdd/SKILL.md)** ê¢â¬â Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
+- **[to-issues](./skills/engineering/to-issues/SKILL.md)** ê¢â¬â Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.
+- **[to-prd](./skills/engineering/to-prd/SKILL.md)** ê¢â¬â Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview ê¢â¬â just synthesizes what you've already discussed.
+- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** ê¢â¬â Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code.
+- **[prototype](./skills/engineering/prototype/SKILL.md)** ê¢â¬â Build a throwaway prototype to flesh out a design ê¢â¬â either a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route.
 
 ### Productivity
 
 General workflow tools, not code-specific.
 
-- **[caveman](./skills/productivity/caveman/SKILL.md)** â€” Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler while keeping full technical accuracy.
-- **[grill-me](./skills/productivity/grill-me/SKILL.md)** â€” Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
-- **[handoff](./skills/productivity/handoff/SKILL.md)** â€” Compact the current conversation into a handoff document so another agent can continue the work.
-- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** â€” Create new skills with proper structure, progressive disclosure, and bundled resources.
+- **[caveman](./skills/productivity/caveman/SKILL.md)** ê¢â¬â Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler while keeping full technical accuracy.
+- **[grill-me](./skills/productivity/grill-me/SKILL.md)** ê¢â¬â Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
+- **[handoff](./skills/productivity/handoff/SKILL.md)** ê¢â¬â Compact the current conversation into a handoff document so another agent can continue the work.
+- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** ê¢â¬â Create new skills with proper structure, progressive disclosure, and bundled resources.
 
 ### Misc
 
 Tools I keep around but rarely use.
 
-- **[git-guardrails-claude-code](./skills/misc/git-guardrails-claude-code/SKILL.md)** â€” Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
-- **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** â€” Migrate test files from `as` type assertions to @total-typescript/shoehorn.
-- **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** â€” Create exercise directory structures with sections, problems, solutions, and explainers.
-- **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** â€” Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
+- **[git-guardrails-claude-code](./skills/misc/git-guardrails-claude-code/SKILL.md)** ê¢â¬â Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
+- **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** ê¢â¬â Migrate test files from `as` type assertions to @total-typescript/shoehorn.
+- **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** ê¢â¬â Create exercise directory structures with sections, problems, solutions, and explainers.
+- **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** ê¢â¬â Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
 
 ---
 

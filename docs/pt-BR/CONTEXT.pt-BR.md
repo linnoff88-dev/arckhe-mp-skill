@@ -1,13 +1,13 @@
-> Tradução não-oficial para PT-BR. Fonte: [CONTEXT.md](../../CONTEXT.md)
+> Traduçêo nêo-oficial para PT-BR. Fonte: [CONTEXT.md](../../CONTEXT.md)
 
 # Matt Pocock Skills
 
-Uma coleção de agent skills (slash commands e comportamentos) carregados pelo Claude Code. As skills são organizadas em buckets e consumidas pela configuração por repositório emitida por `/setup-matt-pocock-skills`.
+Uma coleçêo de agent skills (slash commands e comportamentos) carregados pelo Claude Code. As skills sêo organizadas em buckets e consumidas pela configuraçêo por repositório emitida por `/setup-matt-pocock-skills`.
 
 ## Linguagem
 
 **Issue tracker** (rastreador de issues):
-A ferramenta que hospeda as issues de um repositório — GitHub Issues, Linear, uma convenção local em markdown `.scratch/`, ou similar. Skills como `to-issues`, `to-prd`, `triage` e `qa` leem e escrevem nele.
+A ferramenta que hospeda as issues de um repositório — GitHub Issues, Linear, uma convençêo local em markdown `.scratch/`, ou similar. Skills como `to-issues`, `to-prd`, `triage` e `qa` leem e escrevem nele.
 _Evitar_: backlog manager, backlog backend, issue host
 
 **Issue** (unidade de trabalho rastreada):
@@ -24,5 +24,5 @@ Um rótulo canônico de máquina de estados aplicado a uma **Issue** durante a t
 
 ## Ambiguidades sinalizadas
 
-- "backlog" era anteriormente usado para significar tanto a *ferramenta* que hospeda issues quanto o *corpo de trabalho* dentro dela — resolvido: a ferramenta é o **Issue tracker**; "backlog" não é mais usado como termo de domínio.
+- "backlog" era anteriormente usado para significar tanto a *ferramenta* que hospeda issues quanto o *corpo de trabalho* dentro dela — resolvido: a ferramenta é o **Issue tracker**; "backlog" nêo é mais usado como termo de domínio.
 - "backlog backend" / "backlog manager" — resolvido: colapsados em **Issue tracker**.

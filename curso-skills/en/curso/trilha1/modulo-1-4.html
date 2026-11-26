@@ -287,7 +287,7 @@
 <span class="mr-2">💻</span> Real /tdd dialogue
         </h3>
 <pre class="code-box text-sm text-neutral-300 bg-dark-900 rounded-lg p-4 overflow-x-auto"><span class="text-neutral-500"># você</span>
-<span class="text-emerald-400">/tdd</span> implementa função slugify(texto) — minúsculas, espaço vira "-",
+<span class="text-emerald-400">/tdd</span> implementa funçêo slugify(texto) — minúsculas, espaço vira "-",
 remove acentos, remove caracteres especiais
 
 <span class="text-neutral-500"># agente</span>
@@ -296,7 +296,7 @@ remove acentos, remove caracteres especiais
   - "  Espaço extra  " → "espaco-extra"
   - "Já!!" → "ja"
   - "" → ""
-rodando pytest... 4 failed (módulo slugify não existe) ✓ esperado
+rodando pytest... 4 failed (módulo slugify nêo existe) ✓ esperado
 
 🟢 Green: criando slugify.py com unicodedata + re.sub
 rodando pytest... 4 passed ✓
@@ -613,15 +613,15 @@ end-to-end                (e geralmente quebra)</pre>
 <p class="text-neutral-300 mb-6 leading-relaxed">
         The best time to write this test is right after you’ve fixed the bug—the scenario is fresh, you know exactly what was failing, and the reproduction already exists (you used it in /diagnose).
       </p>
-<!-- Code box: teste de regressão -->
+<!-- Code box: teste de regressêo -->
 <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
 <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center">
 <span class="mr-2">💻</span> Example: regression test
         </h3>
-<pre class="code-box text-sm text-neutral-300 bg-dark-900 rounded-lg p-4 overflow-x-auto"><span class="text-neutral-500"># Bug reportado em produção: "comentário com emoji 🎉 quebrava a API"</span>
+<pre class="code-box text-sm text-neutral-300 bg-dark-900 rounded-lg p-4 overflow-x-auto"><span class="text-neutral-500"># Bug reportado em produçêo: "comentário com emoji 🎉 quebrava a API"</span>
 <span class="text-neutral-500"># Causa encontrada via /diagnose: encoding latin-1 num middleware antigo</span>
 <span class="text-neutral-500"># Fix aplicado: trocar pra utf-8</span>
-<span class="text-neutral-500"># Teste de regressão (commit junto com o fix):</span>
+<span class="text-neutral-500"># Teste de regressêo (commit junto com o fix):</span>
 
 <span class="text-blue-400">def</span> <span class="text-emerald-400">test_comentario_com_emoji_nao_quebra_api</span>():
     <span class="text-neutral-500">"""Regression: bug #482 — emoji no body causava UnicodeDecodeError."""</span>

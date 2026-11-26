@@ -163,7 +163,7 @@
       </span>
 <h1 class="text-3xl sm:text-4xl font-bold mb-4">⚙️ Instalacao e configuracao</h1>
 <p class="text-lg text-neutral-400 max-w-3xl">
-        30 segundos do zero ao primeiro <code class="text-blue-400 font-mono">/grill-me</code>. Setup do <strong class="text-neutral-300">mattpocock/skills</strong> sem mistério: pré-requisitos, instalador, escolha de agentes, configuração de issue tracker e validação.
+        30 segundos do zero ao primeiro <code class="text-blue-400 font-mono">/grill-me</code>. Setup do <strong class="text-neutral-300">mattpocock/skills</strong> sem mistério: pré-requisitos, instalador, escolha de agentes, configuraçêo de issue tracker e validaçêo.
       </p>
 <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
 <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
@@ -194,7 +194,7 @@
 <h2 class="text-2xl font-bold">📋 Pre-requisitos</h2>
 </div>
 <p class="text-neutral-300 mb-6 leading-relaxed">
-        Antes de rodar qualquer comando, garanta que sua máquina tem o ambiente certo. As <strong class="text-blue-400">skills do Matt Pocock</strong> rodam em cima de runtimes que assumem coisas específicas — pular esta etapa é o motivo #1 de instalação falhando com mensagem críptica.
+        Antes de rodar qualquer comando, garanta que sua máquina tem o ambiente certo. As <strong class="text-blue-400">skills do Matt Pocock</strong> rodam em cima de runtimes que assumem coisas específicas — pular esta etapa é o motivo #1 de instalaçêo falhando com mensagem críptica.
       </p>
 <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
 <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center">
@@ -232,9 +232,9 @@
 <ul class="space-y-3 text-neutral-300 text-sm">
 <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Windows nativo sem WSL — caminhos quebram</span></li>
 <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Node 16 ou anterior — npx incompatível</span></li>
-<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Jira, GitLab Issues, Notion (planejado, não pronto)</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Jira, GitLab Issues, Notion (planejado, nêo pronto)</span></li>
 <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Editores como Cursor/Continue (skill é Claude/Codex)</span></li>
-<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem permissão de escrita no projeto (read-only mounts)</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem permissêo de escrita no projeto (read-only mounts)</span></li>
 <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Empresas que bloqueiam npm registry (sem proxy)</span></li>
 </ul>
 </div>
@@ -257,7 +257,7 @@
 <h2 class="text-2xl font-bold">📦 Instalacao via skills.sh (recomendado)</h2>
 </div>
 <p class="text-neutral-300 mb-6 leading-relaxed">
-        O <strong class="text-blue-400">skills.sh</strong> é o caminho oficial. Um comando, sem clonar repo, sem editar JSON na mão. Ele detecta runtime (Claude Code ou Codex), copia os arquivos certos no lugar certo e abre uma tela de seleção.
+        O <strong class="text-blue-400">skills.sh</strong> é o caminho oficial. Um comando, sem clonar repo, sem editar JSON na mêo. Ele detecta runtime (Claude Code ou Codex), copia os arquivos certos no lugar certo e abre uma tela de seleçêo.
       </p>
 <div class="code-box mb-6"><span class="c-cmt"># Na raiz do projeto onde você quer usar as skills:</span>
 <span class="c-cmd">npx</span> <span class="c-str">skills@latest</span> add mattpocock/skills</div>
@@ -266,15 +266,15 @@
 <span class="mr-2">🔧</span> O que o instalador faz por baixo
         </h3>
 <ul class="space-y-2 text-neutral-300 text-sm">
-<li class="flex items-start space-x-2"><span class="text-primary mt-1">1.</span><span>Baixa o pacote <code class="text-blue-400 font-mono">skills</code> via <code class="text-blue-400 font-mono">npx</code> (não instala globalmente).</span></li>
+<li class="flex items-start space-x-2"><span class="text-primary mt-1">1.</span><span>Baixa o pacote <code class="text-blue-400 font-mono">skills</code> via <code class="text-blue-400 font-mono">npx</code> (nêo instala globalmente).</span></li>
 <li class="flex items-start space-x-2"><span class="text-primary mt-1">2.</span><span>Detecta se você está em Claude Code (procura <code class="text-blue-400 font-mono">.claude/</code>) ou Codex (procura <code class="text-blue-400 font-mono">.codex/</code>).</span></li>
 <li class="flex items-start space-x-2"><span class="text-primary mt-1">3.</span><span>Faz <code class="text-blue-400 font-mono">git clone --depth 1</code> de <code class="text-blue-400 font-mono">mattpocock/skills</code> num cache temporário.</span></li>
 <li class="flex items-start space-x-2"><span class="text-primary mt-1">4.</span><span>Lista skills disponíveis (engineering/, productivity/, misc/) com checkboxes.</span></li>
 <li class="flex items-start space-x-2"><span class="text-primary mt-1">5.</span><span>Copia as escolhidas para <code class="text-blue-400 font-mono">.claude/skills/</code> (ou equivalente Codex).</span></li>
-<li class="flex items-start space-x-2"><span class="text-primary mt-1">6.</span><span>Registra as skills no <code class="text-blue-400 font-mono">plugin.json</code> ou na configuração local.</span></li>
+<li class="flex items-start space-x-2"><span class="text-primary mt-1">6.</span><span>Registra as skills no <code class="text-blue-400 font-mono">plugin.json</code> ou na configuraçêo local.</span></li>
 </ul>
 </div>
-<p class="text-neutral-400 text-sm mb-6">Não toca em nada fora desses dois diretórios. Reversível: deletar a pasta de skills volta ao estado original.</p>
+<p class="text-neutral-400 text-sm mb-6">Nêo toca em nada fora desses dois diretórios. Reversível: deletar a pasta de skills volta ao estado original.</p>
 </section>
 <!-- SECAO 3: SELECIONANDO SKILLS NO INSTALLER -->
 <section class="mb-16" id="topico-3">
@@ -283,7 +283,7 @@
 <h2 class="text-2xl font-bold">🎛️ Selecionando skills no installer</h2>
 </div>
 <p class="text-neutral-300 mb-6 leading-relaxed">
-        Após rodar o comando, o instalador entra em modo interativo. <strong class="text-blue-400">4 passos visuais</strong> até confirmar — não dá pra errar se você acompanhar a tela. O mais importante: <strong class="text-neutral-100">marcar <code class="text-blue-400 font-mono">/setup-matt-pocock-skills</code></strong> nessa etapa, porque é ele que vai configurar tudo depois.
+        Após rodar o comando, o instalador entra em modo interativo. <strong class="text-blue-400">4 passos visuais</strong> até confirmar — nêo dá pra errar se você acompanhar a tela. O mais importante: <strong class="text-neutral-100">marcar <code class="text-blue-400 font-mono">/setup-matt-pocock-skills</code></strong> nessa etapa, porque é ele que vai configurar tudo depois.
       </p>
 <div class="space-y-6 mb-6">
 <div class="flex items-start space-x-4">
@@ -305,7 +305,7 @@
 <h4 class="font-semibold text-white mb-2">Tela de selecao aparece</h4>
 <p class="text-sm text-neutral-400 mb-3">Lista interativa com checkboxes</p>
 <p class="text-neutral-300 text-sm mb-3">Você vê todas as skills agrupadas por bucket: <strong>engineering/</strong> (handoff, ica, grill-me…), <strong>productivity/</strong> (setup-matt-pocock-skills, triage-issues…), <strong>misc/</strong>. Setas para navegar, espaço para marcar.</p>
-<p class="text-xs text-neutral-500">Skills <code class="text-neutral-300">personal/</code>, <code class="text-neutral-300">in-progress/</code> e <code class="text-neutral-300">deprecated/</code> não aparecem — protege o usuário de drafts.</p>
+<p class="text-xs text-neutral-500">Skills <code class="text-neutral-300">personal/</code>, <code class="text-neutral-300">in-progress/</code> e <code class="text-neutral-300">deprecated/</code> nêo aparecem — protege o usuário de drafts.</p>
 </div>
 </div>
 <div class="flex items-start space-x-4">
@@ -315,8 +315,8 @@
 <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
 <h4 class="font-semibold text-white mb-2">Escolher agentes — marcar /setup-matt-pocock-skills</h4>
 <p class="text-sm text-neutral-400 mb-3">Etapa critica — nao pular</p>
-<p class="text-neutral-300 text-sm mb-3">Marque <strong class="text-blue-400">/setup-matt-pocock-skills</strong> obrigatoriamente. Esse agente roda <em>uma vez</em> depois da instalação e gera os arquivos de configuração (labels, paths de docs, integração com issue tracker). Sem ele, as outras skills ficam funcionais mas <strong>desconectadas do seu fluxo</strong>.</p>
-<p class="text-xs text-neutral-500">Recomendação minima: <code class="text-neutral-300">/setup-matt-pocock-skills</code>, <code class="text-neutral-300">/grill-me</code>, <code class="text-neutral-300">/handoff</code>. Depois você adiciona o resto.</p>
+<p class="text-neutral-300 text-sm mb-3">Marque <strong class="text-blue-400">/setup-matt-pocock-skills</strong> obrigatoriamente. Esse agente roda <em>uma vez</em> depois da instalaçêo e gera os arquivos de configuraçêo (labels, paths de docs, integraçêo com issue tracker). Sem ele, as outras skills ficam funcionais mas <strong>desconectadas do seu fluxo</strong>.</p>
+<p class="text-xs text-neutral-500">Recomendaçêo minima: <code class="text-neutral-300">/setup-matt-pocock-skills</code>, <code class="text-neutral-300">/grill-me</code>, <code class="text-neutral-300">/handoff</code>. Depois você adiciona o resto.</p>
 </div>
 </div>
 <div class="flex items-start space-x-4">
@@ -327,7 +327,7 @@
 <h4 class="font-semibold text-white mb-2">Confirmar e ver o diff</h4>
 <p class="text-sm text-neutral-400 mb-3">Tudo escrito de uma vez, atomic</p>
 <p class="text-neutral-300 text-sm mb-3">Você aperta Enter. O instalador mostra um resumo: <code class="text-neutral-300">"5 skills installed → .claude/skills/"</code>. Se você usar Git, faça <code class="text-blue-400 font-mono">git status</code> para ver tudo que foi adicionado. Recomendado commitar logo como "chore: install matt-pocock skills".</p>
-<p class="text-xs text-neutral-500">Se algo der errado no meio, o instalador não deixa estado parcial: ou tudo entra, ou nada entra.</p>
+<p class="text-xs text-neutral-500">Se algo der errado no meio, o instalador nêo deixa estado parcial: ou tudo entra, ou nada entra.</p>
 </div>
 </div>
 </div>
@@ -339,7 +339,7 @@
 <h2 class="text-2xl font-bold">🪄 Rodando /setup-matt-pocock-skills</h2>
 </div>
 <p class="text-neutral-300 mb-6 leading-relaxed">
-        Com as skills instaladas, abra o Claude Code (ou Codex) <strong>dentro do mesmo projeto</strong> e dispare o agente de setup. Ele faz uma <strong class="text-blue-400">entrevista curta</strong> (3-4 perguntas) e gera os arquivos de configuração no formato certo pro seu fluxo.
+        Com as skills instaladas, abra o Claude Code (ou Codex) <strong>dentro do mesmo projeto</strong> e dispare o agente de setup. Ele faz uma <strong class="text-blue-400">entrevista curta</strong> (3-4 perguntas) e gera os arquivos de configuraçêo no formato certo pro seu fluxo.
       </p>
 <div class="code-box mb-6"><span class="c-cmt"># No prompt do Claude Code:</span>
 <span class="c-cmd">/setup-matt-pocock-skills</span>
@@ -374,7 +374,7 @@
 <span class="mr-2">💡</span> Recomendacoes por tamanho de time
         </h3>
 <ul class="space-y-3 text-neutral-300 text-sm">
-<li><strong class="text-neutral-100">Solo / side project:</strong> issue tracker local (<code class="text-blue-400 font-mono">.scratch/</code>). Sem fricção, sem dependência externa.</li>
+<li><strong class="text-neutral-100">Solo / side project:</strong> issue tracker local (<code class="text-blue-400 font-mono">.scratch/</code>). Sem fricçêo, sem dependência externa.</li>
 <li><strong class="text-neutral-100">Time pequeno (2-5 devs):</strong> GitHub Issues. É onde o código já vive, todo mundo tem acesso.</li>
 <li><strong class="text-neutral-100">Time médio/grande (6+):</strong> Linear se a empresa já paga. Caso contrário, GitHub Projects.</li>
 <li><strong class="text-neutral-100">Empresa regulada/fechada:</strong> local + sync manual. Evita expor decisões internas em SaaS público.</li>
@@ -395,7 +395,7 @@
 <h4 class="font-bold text-emerald-400 mb-4">✓ Quando usar cada um</h4>
 <ul class="space-y-3 text-neutral-300 text-sm">
 <li><strong class="text-emerald-400">GitHub Issues</strong> — repo público/privado, time inteiro tem acesso, integra com PRs.</li>
-<li><strong class="text-emerald-400">Linear</strong> — organização paga Linear, quer ciclos/projetos estruturados.</li>
+<li><strong class="text-emerald-400">Linear</strong> — organizaçêo paga Linear, quer ciclos/projetos estruturados.</li>
 <li><strong class="text-emerald-400">Local (.scratch/)</strong> — solo, offline, exploratório. Sem custo, sem auth.</li>
 </ul>
 </div>
@@ -408,7 +408,7 @@
 </ul>
 </div>
 </div>
-<p class="text-neutral-300 mb-4">A configuração gerada vive em <code class="text-blue-400 font-mono">docs/agents/issue-tracker.md</code>. Exemplo gerado pelo setup quando você escolhe GitHub:</p>
+<p class="text-neutral-300 mb-4">A configuraçêo gerada vive em <code class="text-blue-400 font-mono">docs/agents/issue-tracker.md</code>. Exemplo gerado pelo setup quando você escolhe GitHub:</p>
 <div class="code-box mb-6"><span class="c-cmt"># docs/agents/issue-tracker.md</span>
 <span class="c-key">tracker</span>: github
 <span class="c-key">repo</span>: meu-org/meu-app
@@ -429,7 +429,7 @@
 <h2 class="text-2xl font-bold">🏷️ Labels de triage</h2>
 </div>
 <p class="text-neutral-300 mb-6 leading-relaxed">
-        As <strong class="text-blue-400">labels</strong> são o vocabulário que une humanos e agentes. Se você diz <em>"isso é um bug"</em> e o agente diz <em>"isso é defeito"</em>, vocês duplicam tickets. O setup gera um mapeamento <strong>papel → label string</strong> para padronizar.
+        As <strong class="text-blue-400">labels</strong> sêo o vocabulário que une humanos e agentes. Se você diz <em>"isso é um bug"</em> e o agente diz <em>"isso é defeito"</em>, vocês duplicam tickets. O setup gera um mapeamento <strong>papel → label string</strong> para padronizar.
       </p>
 <p class="text-neutral-300 mb-4">Cada <em>papel semântico</em> (o que o ticket representa no fluxo) vira uma string canônica. Você muda as strings pra refletir o vocabulário do seu time, mas mantém os papéis:</p>
 <div class="code-box mb-6"><span class="c-cmt"># docs/agents/triage-labels.md</span>
@@ -456,7 +456,7 @@
 <span class="mr-2">📊</span> Por que mapear papel -&gt; string?
         </h3>
 <p class="text-neutral-300 text-sm mb-2">Porque o nome interno (<code class="text-blue-400 font-mono">bug</code>) é estável no código do agente, mas a string visível ao usuário (<code class="text-blue-400 font-mono">"defeito"</code>, <code class="text-blue-400 font-mono">"erro"</code>, <code class="text-blue-400 font-mono">"bug"</code>) varia entre times.</p>
-<p class="text-neutral-300 text-sm">Renomeou a label no GitHub? Edita uma linha aqui. O agente continua funcionando. Sem essa indireção, você quebra <em>todos</em> os prompts toda vez que o time muda o vocabulário.</p>
+<p class="text-neutral-300 text-sm">Renomeou a label no GitHub? Edita uma linha aqui. O agente continua funcionando. Sem essa indireçêo, você quebra <em>todos</em> os prompts toda vez que o time muda o vocabulário.</p>
 </div>
 </section>
 <!-- SECAO 7: INSTALACAO MANUAL -->
@@ -466,7 +466,7 @@
 <h2 class="text-2xl font-bold">🔧 Instalacao manual (sem skills.sh)</h2>
 </div>
 <p class="text-neutral-300 mb-6 leading-relaxed">
-        Se sua empresa bloqueia <code class="text-blue-400 font-mono">npm registry</code>, ou você quer controle total do que entra no repo, dá pra fazer <strong class="text-blue-400">tudo na mão</strong>. É mais trabalho, mas funciona em qualquer ambiente.
+        Se sua empresa bloqueia <code class="text-blue-400 font-mono">npm registry</code>, ou você quer controle total do que entra no repo, dá pra fazer <strong class="text-blue-400">tudo na mêo</strong>. É mais trabalho, mas funciona em qualquer ambiente.
       </p>
 <div class="code-box mb-6"><span class="c-cmt"># 1) Clonar o repo de skills em local separado</span>
 <span class="c-cmd">git</span> clone <span class="c-str">https://github.com/mattpocock/skills.git</span> ~/src/mp-skills
@@ -493,10 +493,10 @@
         </h3>
 <ul class="space-y-2 text-neutral-300 text-sm">
 <li><strong class="text-blue-400">Symlink:</strong> um <code class="text-blue-400 font-mono">git pull</code> no clone atualiza tudo. Bom pra você que quer sempre o latest.</li>
-<li><strong class="text-blue-400">Copia:</strong> congela versão. Bom pra time que precisa de skill estável e revisão por PR.</li>
+<li><strong class="text-blue-400">Copia:</strong> congela versêo. Bom pra time que precisa de skill estável e revisêo por PR.</li>
 </ul>
 </div>
-<p class="text-neutral-400 text-sm mb-6">Depois desse setup manual, você ainda precisa rodar <code class="text-blue-400 font-mono">/setup-matt-pocock-skills</code> dentro do Claude Code para gerar os arquivos de configuração. A instalação manual só coloca os <em>arquivos</em> no lugar — a configuração é separada.</p>
+<p class="text-neutral-400 text-sm mb-6">Depois desse setup manual, você ainda precisa rodar <code class="text-blue-400 font-mono">/setup-matt-pocock-skills</code> dentro do Claude Code para gerar os arquivos de configuraçêo. A instalaçêo manual só coloca os <em>arquivos</em> no lugar — a configuraçêo é separada.</p>
 </section>
 <!-- SECAO 8: VERIFICACAO -->
 <section class="mb-16" id="topico-8">
@@ -541,15 +541,15 @@
 <h2 class="text-2xl font-bold">🩺 Troubleshooting</h2>
 </div>
 <p class="text-neutral-300 mb-6 leading-relaxed">
-        Quase tudo que dá errado cai em três buckets. Identifica o sintoma, aplica a correção, segue a vida.
+        Quase tudo que dá errado cai em três buckets. Identifica o sintoma, aplica a correçêo, segue a vida.
       </p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
 <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
 <h4 class="font-bold text-red-400 mb-4">✗ Sintomas comuns</h4>
 <ul class="space-y-3 text-neutral-300 text-sm">
-<li><strong class="text-red-400">Skill não aparece</strong> ao digitar <code class="text-blue-400 font-mono">/</code> — autocomplete vazio ou só built-ins.</li>
+<li><strong class="text-red-400">Skill nêo aparece</strong> ao digitar <code class="text-blue-400 font-mono">/</code> — autocomplete vazio ou só built-ins.</li>
 <li><strong class="text-red-400">Conflito com outra skill</strong> — duas skills com mesmo nome ou trigger, mensagem <code>"ambiguous command"</code>.</li>
-<li><strong class="text-red-400">Plugin não carrega</strong> — Claude Code abre mas nenhuma skill custom funciona, erro no log de startup.</li>
+<li><strong class="text-red-400">Plugin nêo carrega</strong> — Claude Code abre mas nenhuma skill custom funciona, erro no log de startup.</li>
 <li><strong class="text-red-400">Agent responde direto sem rodar a skill</strong> — você digita <code class="text-blue-400 font-mono">/grill-me</code> e ele só responde como chat normal.</li>
 </ul>
 </div>
@@ -569,17 +569,17 @@
         </h3>
 <ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
 <li>Confere se o diretório existe: <code class="text-blue-400 font-mono">ls .claude/skills/grill-me</code>.</li>
-<li>Confere se tem <code class="text-blue-400 font-mono">SKILL.md</code> dentro com frontmatter válido (nome, descrição).</li>
-<li>Reinicia: feche o Claude Code completamente (não só a janela) e reabra.</li>
-<li>Se ainda não aparece, confere logs em <code class="text-blue-400 font-mono">~/.claude/logs/</code> — procura por <code>"skill load error"</code>.</li>
-<li>Última opção: deleta a pasta da skill, roda <code class="text-blue-400 font-mono">npx skills@latest add</code> de novo.</li>
+<li>Confere se tem <code class="text-blue-400 font-mono">SKILL.md</code> dentro com frontmatter válido (nome, descriçêo).</li>
+<li>Reinicia: feche o Claude Code completamente (nêo só a janela) e reabra.</li>
+<li>Se ainda nêo aparece, confere logs em <code class="text-blue-400 font-mono">~/.claude/logs/</code> — procura por <code>"skill load error"</code>.</li>
+<li>Última opçêo: deleta a pasta da skill, roda <code class="text-blue-400 font-mono">npx skills@latest add</code> de novo.</li>
 </ol>
 </div>
 <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
 <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center">
 <span class="mr-2">⚠️</span> Atencao com permissoes
         </h3>
-<p class="text-neutral-300 text-sm">Se você rodou <code class="text-blue-400 font-mono">npx</code> com <code class="text-blue-400 font-mono">sudo</code> alguma vez, os arquivos podem ter ficado como root e o Claude Code (rodando como seu user) não consegue ler. Conserta com: <code class="text-blue-400 font-mono">sudo chown -R $USER .claude/</code>. <strong>Nunca</strong> rode o instalador com sudo de novo.</p>
+<p class="text-neutral-300 text-sm">Se você rodou <code class="text-blue-400 font-mono">npx</code> com <code class="text-blue-400 font-mono">sudo</code> alguma vez, os arquivos podem ter ficado como root e o Claude Code (rodando como seu user) nêo consegue ler. Conserta com: <code class="text-blue-400 font-mono">sudo chown -R $USER .claude/</code>. <strong>Nunca</strong> rode o instalador com sudo de novo.</p>
 </div>
 </section>
 <!-- RESUMO -->
@@ -593,7 +593,7 @@
 <span class="text-blue-400 mt-1">✓</span>
 <div>
 <strong class="text-white">Pre-requisitos</strong>
-<span class="text-neutral-400"> — Claude Code (ou Codex) + Node 18+ + repo com permissão de escrita. Sem isso, nada roda.</span>
+<span class="text-neutral-400"> — Claude Code (ou Codex) + Node 18+ + repo com permissêo de escrita. Sem isso, nada roda.</span>
 </div>
 </div>
 <div class="flex items-start space-x-3">
@@ -621,7 +621,7 @@
 <span class="text-blue-400 mt-1">✓</span>
 <div>
 <strong class="text-white">Labels = papel -&gt; string</strong>
-<span class="text-neutral-400"> — indireção que protege seus prompts quando o vocabulário do time muda.</span>
+<span class="text-neutral-400"> — indireçêo que protege seus prompts quando o vocabulário do time muda.</span>
 </div>
 </div>
 <div class="flex items-start space-x-3">

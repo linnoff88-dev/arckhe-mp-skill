@@ -137,7 +137,7 @@
 </div>
 </header>
 <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<!-- SEÇÃO 1: Sintomas de ball of mud -->
+<!-- SEÇêO 1: Sintomas de ball of mud -->
 <section class="mb-16" id="topico-1">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
@@ -190,7 +190,7 @@
 <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Predictability</div><div class="text-xs text-neutral-400">Where does a new feature live? You know.</div></div>
 </div>
 </section>
-<!-- SEÇÃO 2: /improve-codebase-architecture -->
+<!-- SEÇêO 2: /improve-codebase-architecture -->
 <section class="mb-16" id="topico-2">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
@@ -235,11 +235,11 @@
        Effort:  1 dia    |  Risk: low
        Start:   renomear customer.* (canonical) e atualizar callsites
 <span class="text-emerald-400">[4] MED</span>   ciclo: api/orders → services/inventory → api/orders
-       Impact:  remove ciclo; clarifica direção de dependência
+       Impact:  remove ciclo; clarifica direçêo de dependência
        Effort:  meio dia |  Risk: low
        Start:   extract InventoryPort interface
 <span class="text-emerald-400">[5] LOW</span>   tests/ duplica fixtures de billing em 6 arquivos
-       Impact:  reduz manutenção de testes
+       Impact:  reduz manutençêo de testes
        Effort:  2h       |  Risk: very low
        Start:   conftest.py compartilhado por subdir</pre>
 </div>
@@ -258,7 +258,7 @@
 <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Non-destructive</div><div class="text-xs text-neutral-400">Suggests deepening, not a rewrite.</div></div>
 </div>
 </section>
-<!-- SEÇÃO 3: /zoom-out -->
+<!-- SEÇêO 3: /zoom-out -->
 <section class="mb-16" id="topico-3">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
@@ -331,7 +331,7 @@
 <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Come back better</div><div class="text-xs text-neutral-400">Zoom-in 2 ≠ zoom-in 1.</div></div>
 </div>
 </section>
-<!-- SEÇÃO 4: Deepening (não rewrite) -->
+<!-- SEÇêO 4: Deepening (nêo rewrite) -->
 <section class="mb-16" id="topico-4">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
@@ -386,7 +386,7 @@
 <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Cumulative</div><div class="text-xs text-neutral-400">Architecture visibly improves.</div></div>
 </div>
 </section>
-<!-- SEÇÃO 5: CONTEXT.md como guia -->
+<!-- SEÇêO 5: CONTEXT.md como guia -->
 <section class="mb-16" id="topico-5">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
@@ -439,7 +439,7 @@
 <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Invariants</div><div class="text-xs text-neutral-400">Untouchable rules during refactoring.</div></div>
 </div>
 </section>
-<!-- SEÇÃO 6: ADRs -->
+<!-- SEÇêO 6: ADRs -->
 <section class="mb-16" id="topico-6">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
@@ -459,12 +459,12 @@ Accepted — 2025-08-14
 <span class="text-emerald-400">## Contexto</span>
 A "materialization cascade" propaga mudanças de preço para contratos
 ativos. Originalmente vivia dentro de pricing/calculator.py porque
-parecia "cálculo de preço". Na prática, são duas responsabilidades:
+parecia "cálculo de preço". Na prática, sêo duas responsabilidades:
   - pricing/    → calcula o preço de UM item, sem estado
   - cascade/    → reage a mudanças, atualiza N contratos, com estado
 Misturadas, qualquer mudança em pricing arriscava efeito colateral
 em milhares de contratos ativos.
-<span class="text-emerald-400">## Decisão</span>
+<span class="text-emerald-400">## Decisêo</span>
 Extrair cascade para billing/cascade.py como entidade nomeada e
 independente. pricing/ vira pure function. cascade/ orquestra.
 <span class="text-emerald-400">## Consequências</span>
@@ -474,9 +474,9 @@ independente. pricing/ vira pure function. cascade/ orquestra.
 - duas pastas onde antes havia uma (custo de descoberta)
 - imports adicionais entre os módulos (acoplamento explícito)
 <span class="text-emerald-400">## Alternativas consideradas</span>
-- Manter junto: rejeitado, acopla cálculo a propagação
+- Manter junto: rejeitado, acopla cálculo a propagaçêo
 - Event bus: prematuro, sem necessidade de async hoje
-- Inline em cada caller: rejeitado, duplicação garantida</pre>
+- Inline em cada caller: rejeitado, duplicaçêo garantida</pre>
 </div>
 <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
 <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center">
@@ -506,7 +506,7 @@ independente. pricing/ vira pure function. cascade/ orquestra.
 <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Immortal</div><div class="text-xs text-neutral-400">Replace, don't delete.</div></div>
 </div>
 </section>
-<!-- SEÇÃO 7: Exemplo de melhoria progressiva -->
+<!-- SEÇêO 7: Exemplo de melhoria progressiva -->
 <section class="mb-16" id="topico-7">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">7</span>
@@ -602,7 +602,7 @@ independente. pricing/ vira pure function. cascade/ orquestra.
 <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Cumulative</div><div class="text-xs text-neutral-400">Re-diagnosis shows improvement.</div></div>
 </div>
 </section>
-<!-- SEÇÃO 8: Exercício -->
+<!-- SEÇêO 8: Exercício -->
 <section class="mb-16" id="topico-8">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">8</span>

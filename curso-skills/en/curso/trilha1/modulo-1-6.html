@@ -171,7 +171,7 @@
 </header>
 <!-- CONTEÚDO -->
 <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-<!-- SEÇÃO 1: Setup inicial -->
+<!-- SEÇêO 1: Setup inicial -->
 <section class="mb-16" id="topico-1">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
@@ -208,7 +208,7 @@
 <span class="text-neutral-500">→ Qual issue tracker este repo usa?</span>
    [1] GitHub Issues  [2] Linear  [3] Local (issues/*.md)
 
-<span class="text-neutral-500">→ Onde fica a documentação viva?</span>
+<span class="text-neutral-500">→ Onde fica a documentaçêo viva?</span>
    docs/CONTEXT.md (default)  ou caminho customizado
 
 <span class="text-neutral-500">→ Pasta de ADRs?</span>
@@ -243,7 +243,7 @@
 </div>
 </div>
 </section>
-<!-- SEÇÃO 2: Grilling -->
+<!-- SEÇêO 2: Grilling -->
 <section class="mb-16" id="topico-2">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
@@ -296,7 +296,7 @@
 </div>
 </div>
 </section>
-<!-- SEÇÃO 3: /to-prd -->
+<!-- SEÇêO 3: /to-prd -->
 <section class="mb-16" id="topico-3">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
@@ -319,13 +319,13 @@
 <h3 class="text-sm font-semibold text-neutral-400 mb-3 flex items-center">
 <span class="mr-2">📋</span> Generated PRD (example)
         </h3>
-<pre class="code-box text-sm text-neutral-300 overflow-x-auto"><span class="text-emerald-400"># PRD: Importação CSV de leads</span>
+<pre class="code-box text-sm text-neutral-300 overflow-x-auto"><span class="text-emerald-400"># PRD: Importaçêo CSV de leads</span>
 
 <span class="text-emerald-400">## Problema</span>
 Time comercial cola CSV no Slack; ninguém importa.
 ~40 leads/semana perdidos.
 
-<span class="text-emerald-400">## Solução proposta</span>
+<span class="text-emerald-400">## Soluçêo proposta</span>
 Endpoint POST /leads/import aceita CSV multipart.
 Valida colunas obrigatórias (email, nome, fonte).
 Deduplica por email. Retorna relatório.
@@ -336,12 +336,12 @@ Deduplica por email. Retorna relatório.
 
 <span class="text-emerald-400">## Critérios de aceite</span>
 - [ ] CSV válido importa em &lt;5s para 1000 linhas
-- [ ] Linhas inválidas retornam no response, não 500
-- [ ] Idempotente: re-upload não duplica
+- [ ] Linhas inválidas retornam no response, nêo 500
+- [ ] Idempotente: re-upload nêo duplica
 
 <span class="text-emerald-400">## Decisões herdadas</span>
-ADR-012: validação via Zod (não Yup).
-ADR-019: jobs &gt;2s vão pra fila, não inline.</pre>
+ADR-012: validaçêo via Zod (nêo Yup).
+ADR-019: jobs &gt;2s vêo pra fila, nêo inline.</pre>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
 <div class="bg-dark-800 rounded-lg p-4 border border-dark-600">
@@ -362,7 +362,7 @@ ADR-019: jobs &gt;2s vão pra fila, não inline.</pre>
 </div>
 </div>
 </section>
-<!-- SEÇÃO 4: /to-issues -->
+<!-- SEÇêO 4: /to-issues -->
 <section class="mb-16" id="topico-4">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
@@ -440,7 +440,7 @@ ADR-019: jobs &gt;2s vão pra fila, não inline.</pre>
 </div>
 </div>
 </section>
-<!-- SEÇÃO 5: /triage -->
+<!-- SEÇêO 5: /triage -->
 <section class="mb-16" id="topico-5">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
@@ -530,7 +530,7 @@ ADR-019: jobs &gt;2s vão pra fila, não inline.</pre>
 </div>
 </div>
 </section>
-<!-- SEÇÃO 6: /tdd -->
+<!-- SEÇêO 6: /tdd -->
 <section class="mb-16" id="topico-6">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
@@ -583,7 +583,7 @@ ADR-019: jobs &gt;2s vão pra fila, não inline.</pre>
 </div>
 </div>
 </section>
-<!-- SEÇÃO 7: Review e merge -->
+<!-- SEÇêO 7: Review e merge -->
 <section class="mb-16" id="topico-7">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">7</span>
@@ -643,7 +643,7 @@ ADR-019: jobs &gt;2s vão pra fila, não inline.</pre>
 </div>
 </div>
 </section>
-<!-- SEÇÃO 8: Visão geral -->
+<!-- SEÇêO 8: Visêo geral -->
 <section class="mb-16" id="topico-8">
 <div class="flex items-center space-x-4 mb-6">
 <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">8</span>

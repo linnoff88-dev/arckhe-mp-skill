@@ -1,4 +1,4 @@
-> Tradução não-oficial para PT-BR do README original. Fonte: [README.md](../../README.md)
+> Traduçêo nêo-oficial para PT-BR do README original. Fonte: [README.md](../../README.md)
 
 <p>
   <a href="https://www.aihero.dev/s/skills-newsletter">
@@ -14,11 +14,11 @@
 
 [![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
 
-Minhas skills de agente que uso todo dia pra fazer engenharia de verdade — não vibe coding.
+Minhas skills de agente que uso todo dia pra fazer engenharia de verdade — nêo vibe coding.
 
 Desenvolver aplicações reais é difícil. Abordagens como GSD, BMAD e Spec-Kit tentam ajudar tomando conta do processo. Mas ao fazer isso, tiram o seu controle e tornam difícil resolver bugs no próprio processo.
 
-Estas skills foram projetadas para serem pequenas, fáceis de adaptar e combináveis. Funcionam com qualquer modelo. São baseadas em décadas de experiência em engenharia. Mexa nelas. Faça-as suas. Aproveite.
+Estas skills foram projetadas para serem pequenas, fáceis de adaptar e combináveis. Funcionam com qualquer modelo. Sêo baseadas em décadas de experiência em engenharia. Mexa nelas. Faça-as suas. Aproveite.
 
 Se você quer acompanhar mudanças nestas skills, e quaisquer novas que eu criar, pode se juntar a outros ~60.000 devs na minha newsletter:
 
@@ -32,7 +32,7 @@ Se você quer acompanhar mudanças nestas skills, e quaisquer novas que eu criar
 npx skills@latest add mattpocock/skills
 ```
 
-2. Escolha as skills que você quer, e em quais agentes de programação quer instalá-las. **Garanta que você selecione `/setup-matt-pocock-skills`**.
+2. Escolha as skills que você quer, e em quais agentes de programaçêo quer instalá-las. **Garanta que você selecione `/setup-matt-pocock-skills`**.
 
 3. Rode `/setup-matt-pocock-skills` no seu agente. Ele vai:
    - Perguntar qual issue tracker você quer usar (GitHub, Linear ou arquivos locais)
@@ -43,36 +43,36 @@ npx skills@latest add mattpocock/skills
 
 ## Por Que Estas Skills Existem
 
-Eu construí estas skills como uma forma de corrigir modos de falha comuns que vejo no Claude Code, Codex e outros agentes de programação.
+Eu construí estas skills como uma forma de corrigir modos de falha comuns que vejo no Claude Code, Codex e outros agentes de programaçêo.
 
-### #1: O Agente Não Fez O Que Eu Queria
+### #1: O Agente Nêo Fez O Que Eu Queria
 
 > "Ninguém sabe exatamente o que quer"
 >
 > David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
 
-**O Problema**. O modo de falha mais comum em desenvolvimento de software é desalinhamento. Você acha que o dev sabe o que você quer. Depois vê o que ele construiu — e percebe que ele não te entendeu de jeito nenhum.
+**O Problema**. O modo de falha mais comum em desenvolvimento de software é desalinhamento. Você acha que o dev sabe o que você quer. Depois vê o que ele construiu — e percebe que ele nêo te entendeu de jeito nenhum.
 
-É a mesma coisa na era da IA. Existe um gap de comunicação entre você e o agente. A correção pra isso é uma **sessão de grilling** — fazer o agente te perguntar questões detalhadas sobre o que você está construindo.
+É a mesma coisa na era da IA. Existe um gap de comunicaçêo entre você e o agente. A correçêo pra isso é uma **sessêo de grilling** — fazer o agente te perguntar questões detalhadas sobre o que você está construindo.
 
-**A Correção** é usar:
+**A Correçêo** é usar:
 
 - [`/grill-me`](./skills/productivity/grill-me/SKILL.md) — para usos fora de código
 - [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) — igual ao [`/grill-me`](./skills/productivity/grill-me/SKILL.md), mas adiciona mais coisas boas (veja abaixo)
 
-Estas são minhas skills mais populares. Elas te ajudam a alinhar com o agente antes de começar, e a pensar profundamente sobre a mudança que você está fazendo. Use-as _toda_ vez que quiser fazer uma mudança.
+Estas sêo minhas skills mais populares. Elas te ajudam a alinhar com o agente antes de começar, e a pensar profundamente sobre a mudança que você está fazendo. Use-as _toda_ vez que quiser fazer uma mudança.
 
 ### #2: O Agente É Verboso Demais
 
-> Com uma linguagem ubíqua, conversas entre desenvolvedores e expressões do código são todas derivadas do mesmo modelo de domínio.
+> Com uma linguagem ubíqua, conversas entre desenvolvedores e expressões do código sêo todas derivadas do mesmo modelo de domínio.
 >
 > Eric Evans, [Domain-Driven-Design](https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
 
-**O Problema**: No início de um projeto, devs e as pessoas pra quem estão construindo o software (os especialistas de domínio) geralmente falam línguas diferentes.
+**O Problema**: No início de um projeto, devs e as pessoas pra quem estêo construindo o software (os especialistas de domínio) geralmente falam línguas diferentes.
 
-Senti a mesma tensão com meus agentes. Agentes geralmente são jogados num projeto e precisam descobrir o jargão conforme vão. Então usam 20 palavras quando 1 bastaria.
+Senti a mesma tensêo com meus agentes. Agentes geralmente sêo jogados num projeto e precisam descobrir o jargêo conforme vêo. Entêo usam 20 palavras quando 1 bastaria.
 
-**A Correção** pra isso é uma linguagem compartilhada. É um documento que ajuda os agentes a decodificar o jargão usado no projeto.
+**A Correçêo** pra isso é uma linguagem compartilhada. É um documento que ajuda os agentes a decodificar o jargêo usado no projeto.
 
 <details>
 <summary>
@@ -81,39 +81,39 @@ Exemplo
 
 Aqui está um exemplo de [`CONTEXT.md`](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md), do meu repo `course-video-manager`. Qual é mais fácil de ler?
 
-- **ANTES**: "Tem um problema quando uma lição dentro de uma seção de um curso é tornada 'real' (ou seja, recebe um lugar no sistema de arquivos)"
-- **DEPOIS**: "Tem um problema com a cascata de materialização"
+- **ANTES**: "Tem um problema quando uma liçêo dentro de uma seçêo de um curso é tornada 'real' (ou seja, recebe um lugar no sistema de arquivos)"
+- **DEPOIS**: "Tem um problema com a cascata de materializaçêo"
 
-Essa concisão se paga sessão após sessão.
+Essa concisêo se paga sessêo após sessêo.
 
 </details>
 
-Isso está embutido no [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md). É uma sessão de grilling, mas que te ajuda a construir uma linguagem compartilhada com a IA, e a documentar decisões difíceis de explicar em ADRs.
+Isso está embutido no [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md). É uma sessêo de grilling, mas que te ajuda a construir uma linguagem compartilhada com a IA, e a documentar decisões difíceis de explicar em ADRs.
 
-É difícil explicar quão poderoso isso é. Pode ser a única técnica mais legal deste repo. Experimente e veja.
+É difícil explicar quêo poderoso isso é. Pode ser a única técnica mais legal deste repo. Experimente e veja.
 
 > [!TIP]
 > Uma linguagem compartilhada tem muitos outros benefícios além de reduzir verbosidade:
 >
-> - **Variáveis, funções e arquivos são nomeados consistentemente**, usando a linguagem compartilhada
+> - **Variáveis, funções e arquivos sêo nomeados consistentemente**, usando a linguagem compartilhada
 > - Como resultado, o **codebase fica mais fácil de navegar** para o agente
 > - O agente também **gasta menos tokens pensando**, porque tem acesso a uma linguagem mais concisa
 
-### #3: O Código Não Funciona
+### #3: O Código Nêo Funciona
 
 > "Sempre dê passos pequenos e deliberados. A taxa de feedback é seu limite de velocidade. Nunca pegue uma tarefa grande demais."
 >
 > David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
 
-**O Problema**: Digamos que você e o agente estão alinhados sobre o que construir. O que acontece quando o agente _ainda assim_ produz porcaria?
+**O Problema**: Digamos que você e o agente estêo alinhados sobre o que construir. O que acontece quando o agente _ainda assim_ produz porcaria?
 
 É hora de olhar pros seus loops de feedback. Sem feedback sobre como o código que ele produz realmente roda, o agente vai voar às cegas.
 
-**A Correção**: Você precisa do trio usual de loops de feedback: tipos estáticos, acesso ao browser e testes automatizados.
+**A Correçêo**: Você precisa do trio usual de loops de feedback: tipos estáticos, acesso ao browser e testes automatizados.
 
 Para testes automatizados, um loop red-green-refactor é crítico. É onde o agente escreve um teste que falha primeiro, depois corrige o teste. Isso ajuda a dar ao agente um nível consistente de feedback que resulta em código muito melhor.
 
-Eu construí uma **skill [`/tdd`](./skills/engineering/tdd/SKILL.md)** que você pode encaixar em qualquer projeto. Ela encoraja red-green-refactor e dá ao agente bastante orientação sobre o que faz testes bons e ruins.
+Eu construí uma **skill [`/tdd`](./skills/engineering/tdd/SKILL.md)** que você pode encaixar em qualquer projeto. Ela encoraja red-green-refactor e dá ao agente bastante orientaçêo sobre o que faz testes bons e ruins.
 
 Para debugging, também construí uma skill **[`/diagnose`](./skills/engineering/diagnose/SKILL.md)** que embrulha as melhores práticas de debugging em um loop simples.
 
@@ -123,13 +123,13 @@ Para debugging, também construí uma skill **[`/diagnose`](./skills/engineering
 >
 > Kent Beck, [Extreme Programming Explained](https://www.amazon.co.uk/Extreme-Programming-Explained-Embrace-Change/dp/0321278658)
 
-> "Os melhores módulos são profundos. Eles permitem que muita funcionalidade seja acessada através de uma interface simples."
+> "Os melhores módulos sêo profundos. Eles permitem que muita funcionalidade seja acessada através de uma interface simples."
 >
 > John Ousterhout, [A Philosophy Of Software Design](https://www.amazon.co.uk/Philosophy-Software-Design-2nd/dp/173210221X)
 
-**O Problema**: A maioria dos apps construídos com agentes são complexos e difíceis de mudar. Como agentes podem acelerar radicalmente o coding, eles também aceleram a entropia do software. Codebases ficam mais complexos a uma taxa sem precedentes.
+**O Problema**: A maioria dos apps construídos com agentes sêo complexos e difíceis de mudar. Como agentes podem acelerar radicalmente o coding, eles também aceleram a entropia do software. Codebases ficam mais complexos a uma taxa sem precedentes.
 
-**A Correção** pra isso é uma abordagem radicalmente nova para o desenvolvimento com IA: se importar com o design do código.
+**A Correçêo** pra isso é uma abordagem radicalmente nova para o desenvolvimento com IA: se importar com o design do código.
 
 Isso está embutido em cada camada destas skills:
 
@@ -140,7 +140,7 @@ E crucialmente, [`/improve-codebase-architecture`](./skills/engineering/improve-
 
 ### Resumo
 
-Os fundamentos de engenharia de software importam mais do que nunca. Estas skills são meu melhor esforço pra condensar esses fundamentos em práticas repetíveis, para te ajudar a entregar os melhores apps da sua carreira. Aproveite.
+Os fundamentos de engenharia de software importam mais do que nunca. Estas skills sêo meu melhor esforço pra condensar esses fundamentos em práticas repetíveis, para te ajudar a entregar os melhores apps da sua carreira. Aproveite.
 
 ## Referência
 
@@ -148,25 +148,25 @@ Os fundamentos de engenharia de software importam mais do que nunca. Estas skill
 
 Skills que uso diariamente pra trabalho de código.
 
-- **[diagnose](./skills/engineering/diagnose/SKILL.md)** — Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance: reproduzir → minimizar → levantar hipóteses → instrumentar → corrigir → teste de regressão.
-- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Sessão de grilling que desafia seu plano contra o modelo de domínio existente, refina terminologia e atualiza `CONTEXT.md` e ADRs inline.
+- **[diagnose](./skills/engineering/diagnose/SKILL.md)** — Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance: reproduzir → minimizar → levantar hipóteses → instrumentar → corrigir → teste de regressêo.
+- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Sessêo de grilling que desafia seu plano contra o modelo de domínio existente, refina terminologia e atualiza `CONTEXT.md` e ADRs inline.
 - **[triage](./skills/engineering/triage/SKILL.md)** — Triagem de issues através de uma máquina de estados de papéis de triagem.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Encontra oportunidades de aprofundamento em um codebase, informado pela linguagem de domínio em `CONTEXT.md` e as decisões em `docs/adr/`.
 - **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)** — Faz o scaffold da config por repo (issue tracker, vocabulário de labels de triagem, layout de docs de domínio) que as outras skills de engenharia consomem. Rode uma vez por repo antes de usar `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture` ou `zoom-out`.
 - **[tdd](./skills/engineering/tdd/SKILL.md)** — Desenvolvimento orientado a testes com um loop red-green-refactor. Constrói features ou corrige bugs uma fatia vertical por vez.
 - **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Quebra qualquer plano, spec ou PRD em issues do GitHub pegáveis de forma independente, usando fatias verticais.
 - **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Transforma o contexto atual da conversa em um PRD e submete como issue do GitHub. Sem entrevista — só sintetiza o que você já discutiu.
-- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — Diz ao agente para dar um zoom out e oferecer contexto mais amplo ou uma perspectiva de mais alto nível sobre uma seção desconhecida de código.
+- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — Diz ao agente para dar um zoom out e oferecer contexto mais amplo ou uma perspectiva de mais alto nível sobre uma seçêo desconhecida de código.
 - **[prototype](./skills/engineering/prototype/SKILL.md)** — Constrói um protótipo descartável pra dar corpo a um design — ou um app de terminal executável para questões de estado/lógica de negócio, ou várias variações radicalmente diferentes de UI alternáveis a partir de uma única rota.
 
 ### Productivity
 
-Ferramentas gerais de workflow, não específicas de código.
+Ferramentas gerais de workflow, nêo específicas de código.
 
-- **[caveman](./skills/productivity/caveman/SKILL.md)** — Modo de comunicação ultra-comprimido. Corta uso de tokens em ~75% derrubando enrolação e mantendo acurácia técnica completa.
-- **[grill-me](./skills/productivity/grill-me/SKILL.md)** — Seja entrevistado implacavelmente sobre um plano ou design até que cada ramo da árvore de decisão esteja resolvido.
+- **[caveman](./skills/productivity/caveman/SKILL.md)** — Modo de comunicaçêo ultra-comprimido. Corta uso de tokens em ~75% derrubando enrolaçêo e mantendo acurácia técnica completa.
+- **[grill-me](./skills/productivity/grill-me/SKILL.md)** — Seja entrevistado implacavelmente sobre um plano ou design até que cada ramo da árvore de decisêo esteja resolvido.
 - **[handoff](./skills/productivity/handoff/SKILL.md)** — Compacta a conversa atual em um documento de handoff para que outro agente possa continuar o trabalho.
-- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — Cria novas skills com estrutura adequada, divulgação progressiva e recursos empacotados.
+- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — Cria novas skills com estrutura adequada, divulgaçêo progressiva e recursos empacotados.
 
 ### Misc
 
