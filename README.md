@@ -26,7 +26,7 @@ Curso completo em portuguêÂªs explicando os fundamentos, a estrutura do rep
 | **T2 ê¢â¬â Sobre o RepositêÂ³rio** ê°Å¸âÂ¦ | Blue | Origem do projeto, filosofia, estrutura de pastas e instalaêÂ§êÂ£o. 3 mêÂ³dulos. |
 | **T3 ê¢â¬â Uso AvanêÂ§ado** ê°Å¸Â§Â© | Purple | ComposiêÂ§êÂ£o de skills, customizaêÂ§êÂ£o e integraêÂ§êÂ£o cross-runtime (Claude Code, Codex, MCP, CI/CD). 3 mêÂ³dulos. |
 
-**ê°Å¸ââ° Acesse o curso: [inematds.github.io/mp-skill/curso-skills/](https://inematds.github.io/mp-skill/curso-skills/)**
+**ê°Å¸ââ° Acesse o curso: [linnoff88-dev.github.io/arckhe-/curso-skills/](https://linnoff88-dev.github.io/arckhe-/curso-skills/)**
 
 Os arquivos do curso ficam em [`curso-skills/`](./curso-skills/).
 
@@ -37,7 +37,7 @@ Os arquivos do curso ficam em [`curso-skills/`](./curso-skills/).
 | Pasta | ConteêÂºdo |
 |-------|----------|
 | **[`skills/`](./skills/)** | As skills propriamente ditas, organizadas em buckets: `engineering/` (10 skills de cêÂ³digo diêÂ¡rio), `productivity/` (workflow nêÂ£o-cêÂ³digo), `misc/` (uso raro), `personal/`, `in-progress/`, `deprecated/`. |
-| **[`curso-skills/`](./curso-skills/)** | Curso PT-BR em HTML estêÂ¡tico no formato INEMA.CLUB ê¢â¬â landing + 3 trilhas + 12 mêÂ³dulos. |
+| **[`curso-skills/`](./curso-skills/)** | Curso PT-BR em HTML estêÂ¡tico no formato ARCKHÉ AI ê¢â¬â landing + 3 trilhas + 12 mêÂ³dulos. |
 | **[`docs/pt-BR/`](./docs/pt-BR/)** | TraduêÂ§êÂ£o PT-BR do README, do CONTEXT.md e êÂ­ndice de todas as skills. |
 | **[`CONTEXT.md`](./CONTEXT.md)** | Linguagem ubêÂ­qua do repo ê¢â¬â termos canêÂ´nicos (Issue tracker, Issue, Triage role). |
 | **[`CLAUDE.md`](./CLAUDE.md)** | ConvenêÂ§êÂµes do projeto carregadas automaticamente pelo Claude Code. |
@@ -61,7 +61,7 @@ Lista completa traduzida em [`docs/pt-BR/skills-pt-BR.md`](./docs/pt-BR/skills-p
 npx skills@latest add mattpocock/skills
 ```
 
-Selecione `/setup-matt-pocock-skills` na lista, depois rode esse comando dentro do seu agente. Detalhes no [MêÂ³dulo 2.3 do curso](https://inematds.github.io/mp-skill/curso-skills/curso/trilha2/modulo-2-3.html).
+Selecione `/setup-matt-pocock-skills` na lista, depois rode esse comando dentro do seu agente. Detalhes no [MêÂ³dulo 2.3 do curso](https://linnoff88-dev.github.io/arckhe-/curso-skills/curso/trilha2/modulo-2-3.html).
 
 ---
 
